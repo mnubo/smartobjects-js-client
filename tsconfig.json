@@ -19,6 +19,7 @@
     "files": [
         "./src/http/Request.ts",
         "./src/http/XHR.ts",
+        "./src/utils/globals.ts",
         "./src/utils/underscore.ts"
     ]
 }

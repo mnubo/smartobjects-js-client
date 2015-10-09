@@ -1,6 +1,5 @@
-/// <reference path="../../tsd_typings/tsd.d.ts" />
-
 import {_} from '../utils/underscore';
+import {Map} from '../utils/globals';
 
 export enum RequestMethods {
     GET,
