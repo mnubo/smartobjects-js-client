@@ -1,0 +1,15 @@
+{
+    "version": "v4",
+    "repo": "borisyankov/DefinitelyTyped",
+    "ref": "master",
+    "path": "tsd_typings",
+    "bundle": "tsd_typings/tsd.d.ts",
+    "installed": {
+        "systemjs/systemjs.d.ts": {
+            "commit": "bd03c6ea51abde7d13e354908716c6373fc38b1f"
+        },
+        "es6-shim/es6-shim.d.ts": {
+            "commit": "4b36b94d5910aa8a4d20bdcd5bd1f9ae6ad18d3c"
+        }
+    }
+}

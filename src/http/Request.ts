@@ -1,3 +1,5 @@
+/// <reference path="../../tsd_typings/tsd.d.ts" />
+
 import {_} from '../utils/underscore';
 
 export enum RequestMethods {
@@ -11,7 +13,7 @@ export enum RequestMethods {
 }
 
 export class Request {
-    constructor(public method: RequestMethods, public headers: Array<string>, public body: string,
+    constructor(public method: RequestMethods, public headers: Map<string, string>, public body: string,
                 public url: string) {}
 
     payload() {

@@ -15,8 +15,8 @@ export class XHR {
         });
 
         if (_.isPresent(request.headers)) {
-            request.headers.forEach(value => {
-                this._xhr.setRequestHeader('MapKey', value);
+            request.headers.forEach((val, header) => {
+                this._xhr.setRequestHeader(header, val);
             });
         }
 
