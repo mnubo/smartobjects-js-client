@@ -1,4 +1,4 @@
-import {underscore as _} from '../utils/underscore';
+import {_} from '../utils/underscore';
 import {Request, RequestMethods} from './Request';
 
 export class XHR {
