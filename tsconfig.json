@@ -18,8 +18,11 @@
     ],
     "exclude": [],
     "files": [
+        "src/http/http.ts",
         "src/http/Request.ts",
         "src/http/XHR.ts",
+        "src/mnubo.static.ts",
+        "src/mnubo.ts",
         "src/utils/globals.ts",
         "src/utils/underscore.ts"
     ]
