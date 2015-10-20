@@ -1,7 +1,6 @@
 'use strict';
 
 let gulp = require('gulp');
-let watch = require('gulp-watch');
 
 let Builder = require('systemjs-builder');
 
