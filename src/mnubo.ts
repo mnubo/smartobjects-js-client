@@ -37,6 +37,9 @@ export class Client {
             scope: scope
         };
 
-        return http.post(url, JSON.stringify(payload));
+        var headers = new Map<string, string>()
+        headers.set('Authorization', `Bearer ${btoa(this.id + ':' + this.secret)}`);
+
+        return http.post(headers, JSON.stringify(payload), url);
     }
 }

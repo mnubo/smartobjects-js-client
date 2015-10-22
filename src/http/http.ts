@@ -30,8 +30,8 @@ function sendRequest(request: Request) {
 }
 
 export class http {
-    static post(url: string, body: string): Promise<any> {
-        let request = new Request(RequestMethods.POST, null, body, url);
+    static post(headers: Map<string, string>, body: string, url: string): Promise<any> {
+        let request = new Request(RequestMethods.POST, headers, body, url);
 
         return sendRequest(request);
     }

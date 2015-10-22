@@ -25,10 +25,7 @@ describe('mnubo', function() {
 
         describe('.getAccessToken()', function() {
             beforeEach(function() {
-                this.client = new mnubo.Client({
-                    id: 'id',
-                    secret: 'secret',
-                });
+                this.client = new mnubo.Client('id', 'secret');
             });
 
             it('should exist', function() {
