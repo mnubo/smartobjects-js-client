@@ -10,6 +10,9 @@
         },
         "es6-shim/es6-shim.d.ts": {
             "commit": "4b36b94d5910aa8a4d20bdcd5bd1f9ae6ad18d3c"
+        },
+        "node/node.d.ts": {
+            "commit": "708609e0764daeb5eb64104af7aca50c520c4e6e"
         }
     }
 }

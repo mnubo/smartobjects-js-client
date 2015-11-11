@@ -14,10 +14,12 @@
         "outDir": "out"
     },
     "filesGlob": [
+        "./tsd_typings/tsd.d.ts",
         "./src/**/*.ts"
     ],
     "exclude": [],
     "files": [
+        "./tsd_typings/tsd.d.ts",
         "./src/http/http.ts",
         "./src/http/Request.ts",
         "./src/http/XHR.ts",
