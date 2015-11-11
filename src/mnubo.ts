@@ -13,8 +13,8 @@ export enum Environments {
 }
 
 interface AccessTokenPayload {
-  grantType: string,
-  scope: OAuth2Scopes
+  grantType: string;
+  scope: OAuth2Scopes;
 }
 
 export class Client {
@@ -37,7 +37,7 @@ export class Client {
         scope: scope
       };
 
-      var headers = new Map<string, string>()
+      var headers = new Map<string, string>();
       headers.set('Authorization', `Bearer ${btoa(this.id + ':' + this.secret)}`);
 
       return http.post(headers, JSON.stringify(payload), url);
