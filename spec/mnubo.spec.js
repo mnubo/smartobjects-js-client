@@ -1,8 +1,8 @@
 /* eslint max-len: 0 */
 /* eslint no-invalid-this: 2 */
 
-const mnubo = window.mnubo;
-const _ = window._;
+const _ = require('lodash');
+const mnubo = require('../out/mnubo');
 
 describe('mnubo', function() {
   it('should exist', function() {
@@ -15,10 +15,10 @@ describe('mnubo', function() {
     });
 
     it('should accept a client id, a client secret and an environement', function() {
-      var env = mnubo.Environments.SANDBOX;
-      var client = new mnubo.Client('id', 'secret', env);
+      const env = mnubo.Environments.SANDBOX;
+      const client = new mnubo.Client('id', 'secret', env);
 
-      var obj = _.pick(client, ['id', 'secret', 'baseUrl']);
+      const obj = _.pick(client, ['id', 'secret', 'baseUrl']);
 
       expect(obj).toEqual({
         id: 'id',
@@ -37,7 +37,7 @@ describe('mnubo', function() {
       });
 
       it('should return a Promise', function() {
-        var promise = this.client.getAccessToken();
+        const promise = this.client.getAccessToken();
 
         expect(promise).toEqual(jasmine.any(Promise));
       });

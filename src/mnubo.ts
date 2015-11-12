@@ -1,3 +1,4 @@
+import {_} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
 
@@ -47,7 +48,7 @@ export class Client {
         headers: new Map<string, string>()
       };
 
-      options.headers.set('Authorization', `Bearer ${btoa(this.id + ':' + this.secret)}`);
+      options.headers.set('Authorization', `Bearer ${_.base64Encode(this.id + ':' + this.secret)}`);
 
       return http.post(options, JSON.stringify(payload));
     }
