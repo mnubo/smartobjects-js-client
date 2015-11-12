@@ -1,4 +1,5 @@
 import {http} from './http/http';
+import {RequestOptions} from './http/request';
 
 export enum OAuth2Scopes {
   ALL,
@@ -37,9 +38,17 @@ export class Client {
         scope: scope
       };
 
-      var headers = new Map<string, string>();
-      headers.set('Authorization', `Bearer ${btoa(this.id + ':' + this.secret)}`);
+      var options: RequestOptions = {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: 8080,
+        method: 'GET',
+        path: 'oauth/token',
+        headers: new Map<string, string>()
+      };
 
-      return http.post(headers, JSON.stringify(payload), url);
+      options.headers.set('Authorization', `Bearer ${btoa(this.id + ':' + this.secret)}`);
+
+      return http.post(options, JSON.stringify(payload));
     }
   }

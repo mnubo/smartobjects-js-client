@@ -20,9 +20,10 @@
     "exclude": [],
     "files": [
         "./tsd_typings/tsd.d.ts",
+        "./src/http/backends/node_backend.ts",
+        "./src/http/backends/xhr_backend.ts",
         "./src/http/http.ts",
-        "./src/http/Request.ts",
-        "./src/http/XHR.ts",
+        "./src/http/request.ts",
         "./src/mnubo.static.ts",
         "./src/mnubo.ts",
         "./src/utils/globals.ts",
