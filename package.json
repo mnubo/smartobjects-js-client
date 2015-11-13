@@ -6,6 +6,10 @@
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mnubo/mnubo-js-sdk.git"
+  },
   "engines": {
     "node": ">=4.0.0"
   },
@@ -25,6 +29,7 @@
     "typescript": "^1.6.2"
   },
   "scripts": {
+    "postinstall": "tsd reinstall --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
