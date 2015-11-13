@@ -1,4 +1,4 @@
-import {_} from '../../utils/underscore';
+import {isPresent} from '../../utils/underscore';
 import {Request, RequestMethods} from '../request';
 
 export function sendRequest(request: Request) {
@@ -20,7 +20,7 @@ export function sendRequest(request: Request) {
       reject(Error('Network error'));
     });
 
-    if (_.isPresent(options.headers)) {
+    if (isPresent(options.headers)) {
       options.headers.forEach((val, header) => {
         xhr.setRequestHeader(header, val);
       });
