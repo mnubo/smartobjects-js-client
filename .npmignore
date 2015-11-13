@@ -1,0 +1,13 @@
+*.tgz
+
+/.eslintignore
+/.eslintrc
+
+/karma.conf.js
+/tsconfig.json
+/tsd.json
+/tslint.json
+
+/spec
+/src
+/tsd_typings
