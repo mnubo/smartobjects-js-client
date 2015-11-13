@@ -4,9 +4,9 @@ class underscore {
   }
 
   static base64Encode(str: string) {
-    if (typeof btoa !== undefined) {
+    if (typeof btoa !== 'undefined') {
       return btoa(str);
-    } else if (typeof Buffer !== undefined) {
+    } else if (typeof Buffer !== 'undefined') {
       return new Buffer(str).toString('base64');
     } else {
       return null;
