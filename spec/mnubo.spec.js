@@ -18,12 +18,16 @@ describe('mnubo', function() {
       const env = mnubo.Environments.SANDBOX;
       const client = new mnubo.Client('id', 'secret', env);
 
-      const obj = _.pick(client, ['id', 'secret', 'baseUrl']);
+      const obj = _.pick(client, ['id', 'secret', 'options']);
 
       expect(obj).toEqual({
         id: 'id',
         secret: 'secret',
-        baseUrl: 'https://rest.sandbox.mnubo.com'
+        options: {
+          protocol: 'https',
+          hostname: 'rest.sandbox.mnubo.com',
+          port: 80
+        }
       });
     });
 

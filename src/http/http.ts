@@ -1,4 +1,3 @@
-import {_} from '../utils/underscore';
 import {Request, RequestMethods, RequestOptions} from './request';
 import {nodeHttpRequest} from './backends/node_backend';
 

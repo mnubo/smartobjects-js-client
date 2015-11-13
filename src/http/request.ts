@@ -1,4 +1,4 @@
-import {_} from '../utils/underscore';
+import {isPresent} from '../utils/underscore';
 import {Map} from '../utils/globals';
 
 export enum RequestMethods {
@@ -12,18 +12,18 @@ export enum RequestMethods {
 }
 
 export interface RequestOptions {
-  protocol: string;
-  hostname: string;
-  port: number;
-  method: string;
-  path: string;
-  headers: Map<string, string>;
+  protocol?: string;
+  hostname?: string;
+  port?: number;
+  method?: string;
+  path?: string;
+  headers?: Map<string, string>;
 }
 
 export class Request {
   constructor(public method: RequestMethods, public options: RequestOptions, public body?: string) {}
 
   payload() {
-    return _.isPresent(this.body) ? this.body.toString() : '';
+    return isPresent(this.body) ? this.body.toString() : '';
   }
 }

@@ -1,4 +1,6 @@
-import {_} from './utils/underscore';
+import * as _ from 'lodash';
+
+import {base64Encode} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
 
@@ -21,34 +23,35 @@ interface AccessTokenPayload {
 
 export class Client {
   constructor(private id: string, private secret: string, private env?: Environments,
-    private baseUrl?: string) {
+    private options?: RequestOptions) {
       if (env === undefined) {
         this.env = Environments.SANDBOX;
       }
 
-      if (!baseUrl) {
-        this.baseUrl = `https://rest.${Environments[this.env].toLowerCase()}.mnubo.com`;
+      if (!options) {
+        this.options = {
+          protocol: 'https',
+          hostname: `rest.${Environments[this.env].toLowerCase()}.mnubo.com`,
+          port: 80
+        };
       }
     }
 
     getAccessToken(scope: OAuth2Scopes) {
-      var url = `${this.baseUrl}/oauth2/token`;
-
       var payload: AccessTokenPayload = {
         grantType: 'client_credentials',
         scope: scope
       };
 
       var options: RequestOptions = {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: 8080,
-        method: 'GET',
         path: 'oauth/token',
         headers: new Map<string, string>()
       };
 
-      options.headers.set('Authorization', `Bearer ${_.base64Encode(this.id + ':' + this.secret)}`);
+      options.headers.set('Authorization', `Bearer ${base64Encode(this.id + ':' + this.secret)}`);
+      options.headers.set('Content-Type', 'application/json');
+
+      _.merge(options, this.options);
 
       return http.post(options, JSON.stringify(payload));
     }
