@@ -30,6 +30,7 @@
     "systemjs-builder": "^0.14.9",
     "typescript": "^1.6.2"
   },
+  "main": "out/mnubo.js",
   "scripts": {
     "postinstall": "tsd reinstall --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -42,6 +43,6 @@
     "smartobject",
     "sdk"
   ],
-  "author": "Jeremy Attali",
+  "author": "Jeremy Attali <jattali@mnubo.com>",
   "license": "MIT"
 }
