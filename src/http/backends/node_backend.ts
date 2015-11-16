@@ -4,13 +4,17 @@ import * as https from 'https';
 import {Request, RequestMethods} from '../request';
 
 export function nodeHttpRequest(request: Request) {
+  const data = request.payload();
+
   const options: http.RequestOptions = {
     protocol: request.options.protocol + ':',
     hostname: request.options.hostname,
     port: request.options.port,
     method: RequestMethods[request.method],
     path: request.options.path,
-    headers: {}
+    headers: {
+      'Content-Length': Buffer.byteLength(data)
+    }
   };
 
   request.options.headers.forEach((value, header) => {
@@ -48,6 +52,9 @@ export function nodeHttpRequest(request: Request) {
     req.on('error', (error: any) => {
       reject(error);
     });
+
+    req.write(data);
+    req.end();
   });
 
   return promise;

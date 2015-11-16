@@ -23,7 +23,11 @@ export interface RequestOptions {
 export class Request {
   constructor(public method: RequestMethods, public options: RequestOptions, public body?: string) {}
 
+  hasPayload() {
+    return isPresent(this.body);
+  }
+
   payload() {
-    return isPresent(this.body) ? this.body.toString() : '';
+    return this.hasPayload() ? this.body.toString() : '';
   }
 }

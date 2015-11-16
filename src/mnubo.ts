@@ -38,13 +38,12 @@ export class Client {
     }
 
     getAccessToken(scope: OAuth2Scopes) {
-      var payload: AccessTokenPayload = {
-        grantType: 'client_credentials',
-        scope: scope
-      };
+      scope = scope || OAuth2Scopes.ALL;
+
+      var payload: string = `grant_type=client_credentials&scope=${OAuth2Scopes[scope].toUpperCase()}`;
 
       var options: RequestOptions = {
-        path: 'oauth/token',
+        path: '/oauth/token',
         headers: new Map<string, string>()
       };
 
@@ -54,6 +53,6 @@ export class Client {
 
       _.merge(options, this.options);
 
-      return http.post(options, JSON.stringify(payload));
+      return http.post(options, payload);
     }
   }
