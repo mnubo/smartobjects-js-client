@@ -48,8 +48,9 @@ export class Client {
         headers: new Map<string, string>()
       };
 
-      options.headers.set('Authorization', `Bearer ${base64Encode(this.id + ':' + this.secret)}`);
-      options.headers.set('Content-Type', 'application/json');
+      options.headers.set('Authorization', `Basic ${base64Encode(this.id + ':' + this.secret)}`);
+      options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+      options.headers.set('Accept-Encoding', 'application/json');
 
       _.merge(options, this.options);
 
