@@ -26,7 +26,7 @@ describe('mnubo', function() {
         options: {
           protocol: 'https',
           hostname: 'rest.sandbox.mnubo.com',
-          port: 80
+          port: 443
         }
       });
     });

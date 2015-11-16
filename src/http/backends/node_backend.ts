@@ -1,13 +1,14 @@
 import * as http from 'http';
+import * as https from 'https';
 
-import {Request} from '../request';
+import {Request, RequestMethods} from '../request';
 
 export function nodeHttpRequest(request: Request) {
   const options: http.RequestOptions = {
-    protocol: request.options.protocol,
+    protocol: request.options.protocol + ':',
     hostname: request.options.hostname,
     port: request.options.port,
-    method: request.method.toString(),
+    method: RequestMethods[request.method],
     path: request.options.path,
     headers: {}
   };
@@ -17,7 +18,7 @@ export function nodeHttpRequest(request: Request) {
   });
 
   const promise = new Promise((resolve, reject) => {
-    const request = http.request(options, (response) => {
+    const cb = function(response: http.IncomingMessage) {
       console.log('STATUS: ' + response.statusCode);
       console.log('HEADERS: ' + JSON.stringify(response.headers));
       response.setEncoding('utf8');
@@ -34,9 +35,17 @@ export function nodeHttpRequest(request: Request) {
           reject(response.statusCode);
         }
       });
-    });
+    };
 
-    request.on('error', (error: any) => {
+    let req: http.ClientRequest;
+
+    if (request.options.protocol === 'https') {
+      req = https.request(options, cb);
+    } else {
+      req = http.request(options, cb);
+    }
+
+    req.on('error', (error: any) => {
       reject(error);
     });
   });

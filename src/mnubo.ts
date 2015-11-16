@@ -32,7 +32,7 @@ export class Client {
         this.options = {
           protocol: 'https',
           hostname: `rest.${Environments[this.env].toLowerCase()}.mnubo.com`,
-          port: 80
+          port: 443
         };
       }
     }
