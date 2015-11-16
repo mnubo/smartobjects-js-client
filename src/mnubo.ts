@@ -16,43 +16,64 @@ export enum Environments {
   PRODUCTION
 }
 
-interface AccessTokenPayload {
-  grantType: string;
-  scope: OAuth2Scopes;
+interface ClientOptions {
+  id: string;
+  secret: string;
+  env?: Environments;
+  httpOptions?: RequestOptions;
+}
+
+interface AccessToken {
+  value: string;
+  type: string;
+  expiresIn: number;
+  jti: string;
 }
 
 export class Client {
-  constructor(private id: string, private secret: string, private env?: Environments,
-    private options?: RequestOptions) {
-      if (env === undefined) {
-        this.env = Environments.SANDBOX;
-      }
+  private token: AccessToken;
 
-      if (!options) {
-        this.options = {
-          protocol: 'https',
-          hostname: `rest.${Environments[this.env].toLowerCase()}.mnubo.com`,
-          port: 443
-        };
-      }
+  constructor(public options: ClientOptions) {
+    if (options.env === undefined) {
+      options.env = Environments.SANDBOX;
     }
 
-    getAccessToken(scope: OAuth2Scopes) {
-      scope = scope || OAuth2Scopes.ALL;
-
-      var payload: string = `grant_type=client_credentials&scope=${OAuth2Scopes[scope].toUpperCase()}`;
-
-      var options: RequestOptions = {
-        path: '/oauth/token',
-        headers: new Map<string, string>()
+    if (!options.httpOptions) {
+      options.httpOptions = {
+        protocol: 'https',
+        hostname: `rest.${Environments[options.env].toLowerCase()}.mnubo.com`,
+        port: 443
       };
-
-      options.headers.set('Authorization', `Basic ${base64Encode(this.id + ':' + this.secret)}`);
-      options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      options.headers.set('Accept-Encoding', 'application/json');
-
-      _.merge(options, this.options);
-
-      return http.post(options, payload);
     }
   }
+
+  getAccessToken(scope: OAuth2Scopes) {
+    scope = scope || OAuth2Scopes.ALL;
+
+    const id = this.options.id;
+    const secret = this.options.secret;
+    const payload = `grant_type=client_credentials&scope=${OAuth2Scopes[scope].toUpperCase()}`;
+
+    const options: RequestOptions = {
+      path: '/oauth/token',
+      headers: new Map<string, string>()
+    };
+
+    options.headers.set('Authorization', `Basic ${base64Encode(id + ':' + secret)}`);
+    options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    options.headers.set('Accept-Encoding', 'application/json');
+
+    _.merge(options, this.options.httpOptions);
+
+    const promise = http.post(options, payload);
+
+    promise.then((data: any) => {
+      this.token.value = data.access_token;
+      this.token.type = data.token_type;
+      this.token.expiresIn = data.expires_in;
+      this.token.jti = data.jti;
+    });
+
+    return ;
+  }
+}
