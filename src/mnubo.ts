@@ -68,12 +68,14 @@ export class Client {
     const promise = http.post(options, payload);
 
     promise.then((data: any) => {
-      this.token.value = data.access_token;
-      this.token.type = data.token_type;
-      this.token.expiresIn = data.expires_in;
-      this.token.jti = data.jti;
+      this.token = {
+        value: data.access_token,
+        type: data.token_type,
+        expiresIn: data.expires_in,
+        jti: data.jti
+      };
     });
 
-    return ;
+    return promise;
   }
 }
