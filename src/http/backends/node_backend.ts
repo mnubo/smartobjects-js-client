@@ -34,11 +34,13 @@ export function nodeHttpRequest(request: Request) {
       response.on('end', function() {
         console.log('No more data in response.');
         if (response.statusCode >= 200 && response.statusCode < 300) {
-          if (response.headers &&
+          if (data.length &&
+              response.headers &&
+              response.headers['content-type'] &&
               response.headers['content-type'].indexOf('application/json') !== -1) {
-            data = JSON.parse(data);
+            resolve(JSON.parse(data));
           }
-          resolve(data);
+          resolve({});
         } else {
           reject(response.statusCode);
         }
