@@ -24,6 +24,7 @@
         "./src/http/backends/xhr_backend.ts",
         "./src/http/http.ts",
         "./src/http/request.ts",
+        "./src/ingestion/owners.ts",
         "./src/mnubo.static.ts",
         "./src/mnubo.ts",
         "./src/utils/globals.ts",
