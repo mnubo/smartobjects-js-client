@@ -23,11 +23,18 @@ interface ClientOptions {
   httpOptions?: RequestOptions;
 }
 
-interface AccessToken {
-  value: string;
-  type: string;
-  expiresIn: number;
-  jti: string;
+class AccessToken {
+  private requestedAt: Date;
+
+  constructor(public value: string, public type: string, public expiresIn: number, public jti: string) {
+    this.requestedAt = new Date();
+  }
+
+  isValid() {
+    var now = new Date();
+
+    return now.getTime() < this.requestedAt.getTime() + this.expiresIn * 1000;
+  }
 }
 
 export class Client {
@@ -47,7 +54,7 @@ export class Client {
     }
   }
 
-  getAccessToken(scope: OAuth2Scopes) {
+  getAccessToken(scope: OAuth2Scopes): Promise<any> {
     scope = scope || OAuth2Scopes.ALL;
 
     const id = this.options.id;
@@ -68,14 +75,18 @@ export class Client {
     const promise = http.post(options, payload);
 
     promise.then((data: any) => {
-      this.token = {
-        value: data.access_token,
-        type: data.token_type,
-        expiresIn: data.expires_in,
-        jti: data.jti
-      };
+      this.token = new AccessToken(data.access_token, data.token_type, data.expires_in, data.jti);
     });
 
     return promise;
+  }
+
+  /**
+   * Is the access token still valid?
+
+   * @return {boolean} false if there is no access token or if it has expired.
+   */
+  isAccessTokenValid(): boolean {
+    return (this.token && this.token.isValid());
   }
 }
