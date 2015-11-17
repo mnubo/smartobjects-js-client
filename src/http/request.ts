@@ -21,13 +21,21 @@ export interface RequestOptions {
 }
 
 export class Request {
-  constructor(public method: RequestMethods, public options: RequestOptions, public body?: string) {}
+  constructor(public method: RequestMethods, public options: RequestOptions, public body?: any) {}
 
   hasPayload() {
     return isPresent(this.body);
   }
 
   payload() {
-    return this.hasPayload() ? this.body.toString() : '';
+    if (!this.hasPayload()) {
+      return '';
+    }
+
+    if (typeof this.body !== 'string') {
+      return JSON.stringify(this.body);
+    } else {
+      return this.body;
+    }
   }
 }
