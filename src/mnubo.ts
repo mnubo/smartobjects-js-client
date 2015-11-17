@@ -4,6 +4,8 @@ import {base64Encode} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
 
+import {Owner} from './ingestion/owners';
+
 export enum OAuth2Scopes {
   ALL,
   LIMITED,
@@ -38,6 +40,7 @@ class AccessToken {
 }
 
 export class Client {
+  public owners: Owner;
   private token: AccessToken;
 
   constructor(public options: ClientOptions) {
@@ -52,9 +55,11 @@ export class Client {
         port: 443
       };
     }
+
+    this.owners = new Owner(this);
   }
 
-  getAccessToken(scope: OAuth2Scopes): Promise<any> {
+  getAccessToken(scope?: OAuth2Scopes): Promise<any> {
     scope = scope || OAuth2Scopes.ALL;
 
     const id = this.options.id;
@@ -88,5 +93,47 @@ export class Client {
    */
   isAccessTokenValid(): boolean {
     return (this.token && this.token.isValid());
+  }
+
+  authenticate(): Promise<any> {
+    if (this.isAccessTokenValid()) {
+      return Promise.resolve(this.token);
+    } else {
+      return this.getAccessToken().then(() => {
+        return this.token;
+      });
+    }
+  }
+
+  buildHttpOptions(path: string, contentType?: string): RequestOptions {
+    const options: RequestOptions = {
+      path: path,
+      headers: new Map<string, string>()
+    };
+
+    contentType = contentType || 'application/json';
+
+    options.headers.set('Authorization', `Bearer ${this.token.value}`);
+    options.headers.set('Content-Type', `${contentType}`);
+
+    _.merge(options, this.options.httpOptions);
+
+    return options;
+  }
+
+  get(path: string, contentType?: string) {
+    return http.get(this.buildHttpOptions(path, contentType));
+  }
+
+  post(path: string, payload: any, contentType?: string) {
+    return http.post(this.buildHttpOptions(path, contentType), payload);
+  }
+
+  put(path: string, payload: any, contentType?: string) {
+    return http.put(this.buildHttpOptions(path, contentType), payload);
+  }
+
+  delete (path: string, contentType?: string) {
+    return http.delete(this.buildHttpOptions(path, contentType));
   }
 }
