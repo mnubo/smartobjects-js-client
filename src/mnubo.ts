@@ -4,7 +4,7 @@ import {base64Encode} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
 
-import {Owner} from './ingestion/owners';
+import {Owners} from './ingestion/owners';
 
 export enum OAuth2Scopes {
   ALL,
@@ -40,7 +40,7 @@ class AccessToken {
 }
 
 export class Client {
-  public owners: Owner;
+  public owners: Owners;
   private token: AccessToken;
 
   constructor(public options: ClientOptions) {
@@ -56,7 +56,7 @@ export class Client {
       };
     }
 
-    this.owners = new Owner(this);
+    this.owners = new Owners(this);
   }
 
   getAccessToken(scope?: OAuth2Scopes): Promise<any> {

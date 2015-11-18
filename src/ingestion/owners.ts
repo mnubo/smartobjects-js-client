@@ -1,6 +1,6 @@
 import {Client} from '../mnubo';
 
-export class Owner {
+export class Owners {
   private path: string;
 
   constructor(private client: Client) {
