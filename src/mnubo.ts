@@ -6,6 +6,7 @@ import {RequestOptions} from './http/request';
 
 import {Owners} from './ingestion/owners';
 import {Objects} from './ingestion/objects';
+import {Events} from './ingestion/events';
 
 export enum OAuth2Scopes {
   ALL,
@@ -43,6 +44,7 @@ class AccessToken {
 export class Client {
   public owners: Owners;
   public objects: Objects;
+  public events: Events;
 
   private token: AccessToken;
 
@@ -61,6 +63,7 @@ export class Client {
 
     this.owners = new Owners(this);
     this.objects = new Objects(this);
+    this.events = new Events(this);
   }
 
   getAccessToken(scope?: OAuth2Scopes): Promise<any> {
