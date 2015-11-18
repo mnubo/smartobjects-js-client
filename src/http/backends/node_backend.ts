@@ -23,16 +23,15 @@ export function nodeHttpRequest(request: Request) {
 
   const promise = new Promise((resolve, reject) => {
     const cb = function(response: http.IncomingMessage) {
-      console.log('STATUS: ' + response.statusCode);
-      console.log('HEADERS: ' + JSON.stringify(response.headers));
-      response.setEncoding('utf8');
       let data = '';
+
+      response.setEncoding('utf8');
+
       response.on('data', function (chunk: string) {
-        console.log('BODY: ' + chunk);
         data += chunk;
       });
+
       response.on('end', function() {
-        console.log('No more data in response.');
         if (response.statusCode >= 200 && response.statusCode < 300) {
           if (data.length &&
               response.headers &&
