@@ -11,7 +11,7 @@
     "url": "git://github.com/mnubo/mnubo-js-sdk.git"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=0.12"
   },
   "dependencies": {
     "lodash": "^3.10.1"
