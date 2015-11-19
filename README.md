@@ -74,11 +74,7 @@ The SDK uses the concept of promises without polyfills. Because of that you need
       })
       .then(function() {
         console.log('object created');
-      })
-      .catch(function(error) {
-        console.error(error);
       });
-
 
 ## Restitution
 
