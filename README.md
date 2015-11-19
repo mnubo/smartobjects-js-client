@@ -72,8 +72,26 @@ The SDK uses the concept of promises without polyfills. Because of that you need
           username: 'user@example.com'
         }
       })
+      .then(function(object) {
+        console.log(object);
+      });
+
+#### Update Object
+
+    client.objects
+      .update('BA2DBC92-E24C-48D4-8F73-7748683E18CC', {
+        x_object_type: 'freezer'
+      })
       .then(function() {
-        console.log('object created');
+        console.log('object updated');
+      });
+
+#### Delete Object
+
+    client.objects
+      .delete('BA2DBC92-E24C-48D4-8F73-7748683E18CC')
+      .then(function() {
+        console.log('object deleted');
       });
 
 ## Restitution
