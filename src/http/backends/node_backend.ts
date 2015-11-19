@@ -41,7 +41,10 @@ export function nodeHttpRequest(request: Request) {
           }
           resolve({});
         } else {
-          reject(response.statusCode);
+          reject({
+            statusCode: response.statusCode,
+            data: data
+          });
         }
       });
     };
