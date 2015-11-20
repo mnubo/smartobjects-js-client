@@ -20,8 +20,8 @@ The authentication is wrapped for every SDK call. The library will first fetch a
 
 The initialization of the SDK client requires two mandatory fields:
 
-- `id` (**mandatory**): The client id
-- `secret` (**mandatory**): The client secret
+- `id` (**mandatory**): The client id.
+- `secret` (**mandatory**): The client secret.
 - `env` (*optional*): The environment where the API calls will be sent. It can be either `sandbox` or `production`. By default the `env` is `sandbox`.
 
 
