@@ -14,13 +14,21 @@ The authentication is wrapped for every SDK call. The library will first fetch a
 
 ## Initialization
 
+The initialization of the SDK client requires two mandatory fields:
+
+- `id` (**mandatory**): The client id
+- `secret` (**mandatory**): The client secret
+- `env` (*optional*): The environment where the API calls will be sent. It can be either `sandbox` or `production`. By default the `env` is `sandbox`.
+
+
     // Load mnubo SDK.
     var mnubo = require('mnubo-sdk');
 
     // Create a new client with client id and client secret.
     var client = new mnubo.Client({
       id: 'KyR2LipTvH2ltAML4ScOTZ7TPLZvjV6oVYIYyx6CZORsoa131d',
-      secret: 'B0KcvAeSZJuSXg9Hi0IYZKcsCNNUkw8bxsZ0GSgAW5cWKARa6m'
+      secret: 'B0KcvAeSZJuSXg9Hi0IYZKcsCNNUkw8bxsZ0GSgAW5cWKARa6m',
+      env: 'production'
     });
 
 ## API Calls
