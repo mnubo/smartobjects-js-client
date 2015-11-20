@@ -32,11 +32,12 @@
   },
   "keywords": [
     "mnubo",
+    "api",
+    "sdk",
     "javascript",
     "typescript",
     "iot",
-    "smartobject",
-    "sdk"
+    "smartobject"
   ],
   "author": "Jeremy Attali <jattali@mnubo.com>",
   "license": "MIT"
