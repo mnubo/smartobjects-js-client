@@ -6,11 +6,15 @@ The current SDK version only works in a NodeJS environment. Browsers environment
 
 ## Requirements
 
-The SDK uses the concept of promises without polyfills. Because of that you need node >= 0.12.
+The minimum requirement is `node>=0.10.40` but because the code uses [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise) and [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), if you are not running `node>=4.0.0`, you need to require `es6-shim`.
+
+    npm install --save es6-shim
+
+    require('es6-shim'); // before loading mnubo-sdk
 
 ## Authentication
 
-The authentication is wrapped for every SDK call. The library will first fetch a new Access Token and make the API call. There is nothing to do from a developer's perspective besides setting the client id, client secret and environment up initialization.
+The authentication is wrapped for every SDK call. The library will first fetch a new Access Token and make the API call. There is nothing to do from a developer's perspective besides setting the client id, client secret and environment during initialization.
 
 ## Initialization
 
@@ -22,6 +26,7 @@ The initialization of the SDK client requires two mandatory fields:
 
 
     // Load mnubo SDK.
+    require('es6-shim'); // if node < 4.0.0
     var mnubo = require('mnubo-sdk');
 
     // Create a new client with client id and client secret.
