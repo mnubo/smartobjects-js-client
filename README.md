@@ -14,7 +14,7 @@ The minimum requirement is `node>=0.10.40` but because the code uses [Promise](h
 
 ## Installation
 
-    npm install mnubo-sdk
+    npm install --save mnubo-sdk
 
 ## Authentication
 
