@@ -1,22 +1,23 @@
 'use strict';
 
-const gulp = require('gulp');
+var gulp = require('gulp');
+var typescript = require('gulp-typescript');
 
-const Builder = require('systemjs-builder');
+var Builder = require('systemjs-builder');
 
-const config = {
+var config = {
   path: {
     out: 'out',
     dist: 'dist'
   }
 };
 
-gulp.task('watch', () => {
-  gulp.watch(`${config.path.out}/**/*.js`, ['dist']);
+gulp.task('watch', function() {
+  gulp.watch(config.path.out + '/**/*.js', ['build']);
 });
 
-gulp.task('dist', () => {
-  const builder = new Builder();
+gulp.task('dist', function() {
+  var builder = new Builder();
 
   builder.config({
     baseURL: 'out',
