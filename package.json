@@ -1,7 +1,7 @@
 {
   "name": "mnubo-sdk",
   "version": "1.0.0",
-  "description": "mnubo SmartObjects SDK for Javascript developers.",
+  "description": "mnubo SmartObjects SDK for JavaScript developers.",
   "main": "dist/mnubo.js",
   "directories": {
     "test": "test"
