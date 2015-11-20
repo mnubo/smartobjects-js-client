@@ -11,7 +11,7 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": false,
-        "outDir": "out"
+        "outDir": "dist"
     },
     "filesGlob": [
         "./tsd_typings/tsd.d.ts",
