@@ -2,11 +2,13 @@
 
 /.eslintignore
 /.eslintrc
+/.npmignore
 
 /karma.conf.js
 /tsconfig.json
 /tsd.json
 /tslint.json
+/gulpfile.js
 
 /spec
 /src
