@@ -32,19 +32,20 @@ export function nodeHttpRequest(request: Request) {
       });
 
       response.on('end', function() {
-        if (response.statusCode >= 200 && response.statusCode < 300) {
-          if (data.length &&
-              response.headers &&
-              response.headers['content-type'] &&
-              response.headers['content-type'].indexOf('application/json') !== -1) {
-            resolve(JSON.parse(data));
+        if (data.length) {
+          if (response.headers &&
+            response.headers['content-type'] &&
+            response.headers['content-type'].indexOf('application/json') !== -1) {
+            data = JSON.parse(data);
           }
-          resolve({});
         } else {
-          reject({
-            statusCode: response.statusCode,
-            data: data
-          });
+          data = null;
+        }
+
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          resolve(data);
+        } else {
+          reject(data);
         }
       });
     };
