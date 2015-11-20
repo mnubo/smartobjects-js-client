@@ -1,5 +1,4 @@
 import {isPresent} from '../utils/underscore';
-import {Map} from '../utils/globals';
 
 export enum RequestMethods {
   GET,
