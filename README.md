@@ -15,7 +15,7 @@ The authentication is wrapped for every SDK call. The library will first fetch a
 ## Initialization
 
     // Load mnubo SDK.
-    var mnubo = require('mnubo-js');
+    var mnubo = require('mnubo-sdk');
 
     // Create a new client with client id and client secret.
     var client = new mnubo.Client({
