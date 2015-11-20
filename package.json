@@ -1,5 +1,5 @@
 {
-  "name": "mnubo-js",
+  "name": "mnubo-sdk",
   "version": "1.0.0",
   "description": "mnubo SmartObjects SDK for Javascript developers.",
   "main": "out/mnubo.js",
