@@ -1,12 +1,16 @@
 # mnubo JavaScript SDK
 
-This is a Javascript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t).
+This is a JavaScript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t).
 
 The current SDK version only works in a NodeJS environment. Browsers environments will be supported soon. The APIs will remain the same.
 
 ## Requirements
 
 The SDK uses the concept of promises without polyfills. Because of that you need node >= 0.12.
+
+## Authentication
+
+The authentication is wrapped for every SDK call. The library will first fetch a new Access Token and make the API call. There is nothing to do from a developer's perspective besides setting the client id, client secret and environment up initialization.
 
 ## Initialization
 
@@ -18,6 +22,20 @@ The SDK uses the concept of promises without polyfills. Because of that you need
       id: 'KyR2LipTvH2ltAML4ScOTZ7TPLZvjV6oVYIYyx6CZORsoa131d',
       secret: 'B0KcvAeSZJuSXg9Hi0IYZKcsCNNUkw8bxsZ0GSgAW5cWKARa6m'
     });
+
+## API Calls
+
+All the API calls return a [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise).
+
+- When a promise is successful, you can call the `.then()` function to get the data returned by the mnubo servers. If there is no data, the value is `null`. ex: `client.events.send({...}).then(function(data) { console.log(data); });`
+
+- When a promise is fails, you can call the `.catch()` function to get the error returned by the mnubo servers. If there is no data, the value is `null`. ex: `client.events.send({...}).catch(function(error) { console.log(error); });`
+
+If you are not familiar with promises, there is an excellent article on [html5rocks](http://www.html5rocks.com/en/tutorials/es6/promises/).
+
+## Examples
+
+If you need some examples to get started with the SDK, you can check out the [wiki page]().
 
 ## Ingestion
 
