@@ -16,15 +16,10 @@ export enum OAuth2Scopes {
   WRITE
 }
 
-export enum Environments {
-  SANDBOX,
-  PRODUCTION
-}
-
 interface ClientOptions {
   id: string;
   secret: string;
-  env?: Environments;
+  env: string;
   httpOptions?: RequestOptions;
 }
 
@@ -52,13 +47,13 @@ export class Client {
 
   constructor(public options: ClientOptions) {
     if (options.env === undefined) {
-      options.env = Environments.SANDBOX;
+      options.env = 'sandbox';
     }
 
     if (!options.httpOptions) {
       options.httpOptions = {
         protocol: 'https',
-        hostname: `rest.${Environments[options.env].toLowerCase()}.mnubo.com`,
+        hostname: this.hostname(),
         port: 443
       };
     }
@@ -67,6 +62,16 @@ export class Client {
     this.objects = new Objects(this);
     this.events = new Events(this);
     this.search = new Search(this);
+  }
+
+  hostname(): string {
+    let part = 'sandbox';
+
+    if (this.options.env === 'production') {
+      part = 'api';
+    }
+
+    return `rest.${part}.mnubo.com`;
   }
 
   getAccessToken(scope?: OAuth2Scopes): Promise<any> {
