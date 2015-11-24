@@ -1,4 +1,5 @@
 import {Client} from '../mnubo';
+import {authenticate} from '../decorators';
 
 export class Owners {
   private path: string;
@@ -7,27 +8,23 @@ export class Owners {
     this.path = '/api/v3/owners';
   }
 
+  @authenticate
   create(payload: any): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.post(this.path, payload);
-    });
+    return this.client.post(this.path, payload);
   }
 
+  @authenticate
   update(username: string, payload: any): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.put(`${this.path}/${username}`, payload);
-    });
+    return this.client.put(`${this.path}/${username}`, payload);
   }
 
+  @authenticate
   delete (username: string): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.delete(`${this.path}/${username}`);
-    });
+    return this.client.delete(`${this.path}/${username}`);
   }
 
+  @authenticate
   claim(username: string, deviceId: string): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.delete(`${this.path}/${username}/objects/{deviceId}/claim`);
-    });
+    return this.client.delete(`${this.path}/${username}/objects/{deviceId}/claim`);
   }
 }

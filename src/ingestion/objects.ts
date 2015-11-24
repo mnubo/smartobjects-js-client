@@ -1,4 +1,5 @@
 import {Client} from '../mnubo';
+import {authenticate} from '../decorators';
 
 export class Objects {
   private path: string;
@@ -7,21 +8,18 @@ export class Objects {
     this.path = '/api/v3/objects';
   }
 
+  @authenticate
   create(payload: any): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.post(this.path, payload);
-    });
+    return this.client.post(this.path, payload);
   }
 
+  @authenticate
   update(deviceId: string, payload: any): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.put(`${this.path}/${deviceId}`, payload);
-    });
+    return this.client.put(`${this.path}/${deviceId}`, payload);
   }
 
+  @authenticate
   delete (deviceId: string): Promise<any> {
-    return this.client.authenticate().then(() => {
-      return this.client.delete(`${this.path}/${deviceId}`);
-    });
+    return this.client.delete(`${this.path}/${deviceId}`);
   }
 }

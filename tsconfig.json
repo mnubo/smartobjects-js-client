@@ -10,6 +10,7 @@
         "emitDecoratorMetadata": true,
         "noLib": false,
         "preserveConstEnums": true,
+        "sourceMap": true,
         "suppressImplicitAnyIndexErrors": false,
         "outDir": "dist"
     },
@@ -20,6 +21,7 @@
     "exclude": [],
     "files": [
         "./tsd_typings/tsd.d.ts",
+        "./src/decorators.ts",
         "./src/http/backends/node_backend.ts",
         "./src/http/backends/xhr_backend.ts",
         "./src/http/http.ts",
