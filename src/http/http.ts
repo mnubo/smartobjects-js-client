@@ -1,9 +1,14 @@
 import {Request, RequestMethods, RequestOptions} from './request';
 import {nodeHttpRequest} from './backends/node_backend';
+import {xhrHttpRequest} from './backends/xhr_backend';
 
 export class http {
-  static request(request: Request) {
-    return nodeHttpRequest(request);
+  static request(request: Request): Promise<any> {
+    if (typeof XMLHttpRequest !== 'undefined') {
+      return xhrHttpRequest(request);
+    } else {
+      return nodeHttpRequest(request);
+    }
   }
 
   static get(options: RequestOptions): Promise<any> {

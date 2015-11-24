@@ -3,7 +3,7 @@ import * as https from 'https';
 
 import {Request, RequestMethods} from '../request';
 
-export function nodeHttpRequest(request: Request) {
+export function nodeHttpRequest(request: Request): Promise<any> {
   const data = request.payload();
 
   const options: http.RequestOptions = {

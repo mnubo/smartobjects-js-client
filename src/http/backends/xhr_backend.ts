@@ -1,23 +1,27 @@
 import {isPresent} from '../../utils/underscore';
 import {Request, RequestMethods} from '../request';
 
-export function sendRequest(request: Request) {
+export function xhrHttpRequest(request: Request): Promise<any> {
+  const payload = request.payload();
   const options = request.options;
+
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     const url = `${options.protocol}://${options.hostname}:${options.port}/${options.path}`;
 
     xhr.open(RequestMethods[request.method], url);
     xhr.addEventListener('load', () => {
-      request = xhr.response;
-      if (xhr.status === 200) {
+      const response = xhr.response;
+
+      if (xhr.status >= 200 && xhr.status < 300) {
         resolve(xhr.response);
       } else {
         reject(Error(xhr.statusText));
       }
     });
-    xhr.addEventListener('error', () => {
-      reject(Error('Network error'));
+
+    xhr.addEventListener('error', (error: any) => {
+      reject(error);
     });
 
     if (isPresent(options.headers)) {
@@ -26,6 +30,6 @@ export function sendRequest(request: Request) {
       });
     }
 
-    xhr.send(request.payload());
+    xhr.send(payload);
   });
 }
