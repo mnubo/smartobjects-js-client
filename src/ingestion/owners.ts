@@ -25,6 +25,6 @@ export class Owners {
 
   @authenticate
   claim(username: string, deviceId: string): Promise<any> {
-    return this.client.post(`${this.path}/${username}/objects/{deviceId}/claim`, {});
+    return this.client.post(`${this.path}/${username}/objects/${deviceId}/claim`, {});
   }
 }
