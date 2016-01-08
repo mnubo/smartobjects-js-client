@@ -23,7 +23,6 @@
         "./tsd_typings/tsd.d.ts",
         "./src/decorators.ts",
         "./src/http/backends/node_backend.ts",
-        "./src/http/backends/xhr_backend.ts",
         "./src/http/http.ts",
         "./src/http/request.ts",
         "./src/ingestion/events.ts",
