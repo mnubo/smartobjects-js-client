@@ -97,7 +97,7 @@ N/A
 ---
 #<a name="section7"></a>7. Source code
 
-https://github.com/mnubo/mnubo-js-sdk/tree/master/src
+[source code](https://github.com/mnubo/mnubo-js-sdk/tree/master/src)
 
 ---
 #<a name="section8"></a>8. Known limitations
@@ -107,12 +107,12 @@ N/A
 ---
 #<a name="section9"></a>9. References
 
-https://sop.mtl.mnubo.com/apps/doc/?i=t
+[mnubo documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t)
 
-https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise
+[Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise)
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-https://github.com/mnubo/mnubo-js-sdk/wiki/Examples
+[Examples](https://github.com/mnubo/mnubo-js-sdk/wiki/Examples)
 
 
