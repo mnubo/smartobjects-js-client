@@ -29,6 +29,8 @@ This is a JavaScript opinionated version of the original [API documentation](htt
 ---
 #<a name="section3"></a>2. Architecture
 
+Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
+
 ---
 #<a name="section3"></a>3. Prerequisites
 
