@@ -1,3 +1,13 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/mnubo/smartobjects-js-client/compare/1.5.0...1.6.0) (2017-03-17)
+
+
+### Features
+
+* **owners:** add batch claim and unclaim ([222cc75](https://github.com/mnubo/smartobjects-js-client/commit/222cc75))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/mnubo/smartobjects-js-client/compare/1.4.0...1.5.0) (2016-12-07)
 
