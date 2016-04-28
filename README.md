@@ -1,60 +1,30 @@
 # mnubo JavaScript SDK
 
-Table of Content
-================
- 
-[1. Introduction](#section1)
+## Introduction
 
-[2. Architecture](#section2) 
+This is a JavaScript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t). Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
 
-[3. Pre-requisites](#section3)
+## Prerequisites
 
-[4. Installation & Configuration](#section4) 
+The current SDK version only works in a NodeJS environment. For security reasons, it is not recommended to use this SDK in a browser environment because the client id and secret could easily be discovered.
 
-[5. Usage](#section5)
-
-[6. Important notes](#section6) 
-
-[7. Source code](#section7)
-
-[8. Known limitations](#section8)
-
-[9. References](#section9)
-
----
-#<a name="section1"></a>1. Introduction
-
-This is a JavaScript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t).
-
----
-#<a name="section3"></a>2. Architecture
-
-Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
-
----
-#<a name="section3"></a>3. Prerequisites
-
-The current SDK version only works in a NodeJS environment. Browsers environments will be supported soon. The APIs will remain the same.
-
-The minimum requirement is `node>=0.10.40` but because the code uses [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise) and [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), if you are not running `node>=4.0.0`, you need to require `es6-shim`.
+The minimum requirement is `node>=0.10.40` but because the code uses [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise) and [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), if you are not running `node>=4.0.0`, you need to require `es6-shim` or any other library that polyfills those structures.
 
     npm install --save es6-shim
 
     require('es6-shim'); // before loading mnubo-sdk
 
----
-#<a name="section4"></a>4. Installation & Configuration
+## Installation
 
     npm install --save mnubo-sdk
 
----
-#<a name="section5"></a>5. Usage
+## Usage
 
-## Authentication
+### Authentication
 
 The authentication is wrapped for every SDK call. The library will first fetch a new Access Token and make the API call. There is nothing to do from a developer's perspective besides setting the client id, client secret and environment during initialization.
 
-## Initialization
+### Initialization
 
 The initialization of the SDK client requires two mandatory fields:
 
@@ -75,7 +45,7 @@ var client = new mnubo.Client({
 });
 ```
 
-## API Calls
+### API Calls
 
 All the API calls return a [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise).
 
@@ -85,27 +55,11 @@ All the API calls return a [Promise](https://developer.mozilla.org/en-US/docs/Mo
 
 If you are not familiar with promises, there is an excellent article on [html5rocks](http://www.html5rocks.com/en/tutorials/es6/promises/).
 
-## Examples
+### Examples
 
 If you need some examples to get started with the SDK, you can check out the [wiki page](https://github.com/mnubo/mnubo-js-sdk/wiki/Examples).
 
----
-#<a name="section6"></a>6. Important notes
-
-N/A
-
----
-#<a name="section7"></a>7. Source code
-
-[source code](https://github.com/mnubo/mnubo-js-sdk/tree/master/src)
-
----
-#<a name="section8"></a>8. Known limitations
-
-N/A
-
----
-#<a name="section9"></a>9. References
+## References
 
 [mnubo documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t)
 
@@ -114,5 +68,3 @@ N/A
 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
 [Examples](https://github.com/mnubo/mnubo-js-sdk/wiki/Examples)
-
-
