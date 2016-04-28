@@ -1,3 +1,24 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/mnubo/smartobjects-js-client/compare/1.5.0...v1.7.0) (2017-04-03)
+
+
+### Features
+
+* **bigdata:** add lowlevel api for bigdata ([9c6159e](https://github.com/mnubo/smartobjects-js-client/commit/9c6159e))
+* **events:** add options for send from device ([42f29c6](https://github.com/mnubo/smartobjects-js-client/commit/42f29c6))
+
+
+
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/mnubo/smartobjects-js-client/compare/1.5.0...1.6.0) (2017-03-17)
+
+
+### Features
+
+* **owners:** add batch claim and unclaim ([222cc75](https://github.com/mnubo/smartobjects-js-client/commit/222cc75))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/mnubo/smartobjects-js-client/compare/1.4.0...1.5.0) (2016-12-07)
 
