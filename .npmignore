@@ -4,11 +4,11 @@
 /.eslintrc
 /.npmignore
 
+/gulpfile.js
 /karma.conf.js
 /tsconfig.json
-/tsd.json
 /tslint.json
-/gulpfile.js
+/typings.json
 
 /spec
-/tsd_typings
+/typings

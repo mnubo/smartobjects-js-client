@@ -15,12 +15,11 @@
         "outDir": "dist"
     },
     "filesGlob": [
-        "./tsd_typings/tsd.d.ts",
+        "./typings/main.d.ts",
         "./src/**/*.ts"
     ],
     "exclude": [],
     "files": [
-        "./tsd_typings/tsd.d.ts",
         "./src/decorators.ts",
         "./src/http/backends/node_backend.ts",
         "./src/http/http.ts",
