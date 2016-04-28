@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.3.0...1.4.0) (2016-09-01)
+
+
+### Features
+
+* **compression:** introduce gzip compression to requests and responses ([a072fc9](https://github.com/mnubo/mnubo-js-sdk/commit/a072fc9))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.2.0...1.3.0) (2016-08-03)
 
