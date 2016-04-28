@@ -1,3 +1,13 @@
+<a name="1.10.1"></a>
+## [1.10.1](https://github.com/mnubo/smartobjects-js-client/compare/1.10.0...1.10.1) (2017-12-21)
+
+
+### Bug Fixes
+
+* **http:** convert payload to Buffer to get proper utf-8 encoding ([35ecbe3](https://github.com/mnubo/smartobjects-js-client/commit/35ecbe3)), closes [#12](https://github.com/mnubo/smartobjects-js-client/issues/12)
+
+
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/mnubo/smartobjects-js-client/compare/1.9.0...v1.10.0) (2017-08-18)
 
