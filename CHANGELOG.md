@@ -1,3 +1,13 @@
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/mnubo/smartobjects-js-client/compare/1.9.0...v1.10.0) (2017-08-18)
+
+
+### Features
+
+* **token:** use a token instead of client/secret ([f15813e](https://github.com/mnubo/smartobjects-js-client/commit/f15813e))
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/mnubo/smartobjects-js-client/compare/1.8.1...1.9.0) (2017-07-12)
 
