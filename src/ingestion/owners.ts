@@ -19,6 +19,11 @@ export class Owners {
   }
 
   @authenticate
+  createUpdate(payload: Array<any>): Promise<any> {
+    return this.client.put(`${this.path}`, payload);
+  }
+
+  @authenticate
   delete (username: string): Promise<any> {
     return this.client.delete(`${this.path}/${username}`);
   }
