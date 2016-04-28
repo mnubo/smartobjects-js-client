@@ -1,3 +1,19 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/mnubo/smartobjects-js-client/compare/1.8.1...1.9.0) (2017-07-12)
+
+
+### Bug Fixes
+
+* **test:** fix flaky test and format it ([46d386a](https://github.com/mnubo/smartobjects-js-client/commit/46d386a))
+
+
+### Features
+
+* **retry:** support exponential back off retry ([c994344](https://github.com/mnubo/smartobjects-js-client/commit/c994344))
+* **types:** add type definition for promise-retry ([29f7102](https://github.com/mnubo/smartobjects-js-client/commit/29f7102))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/mnubo/smartobjects-js-client/compare/1.8.0...1.8.1) (2017-05-01)
 
