@@ -19,6 +19,11 @@ export class Objects {
   }
 
   @authenticate
+  createUpdate(payload: Array<any>): Promise<any> {
+    return this.client.put(`${this.path}`, payload);
+  }
+
+  @authenticate
   delete (deviceId: string): Promise<any> {
     return this.client.delete(`${this.path}/${deviceId}`);
   }
