@@ -1,3 +1,30 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/mnubo/smartobjects-js-client/compare/1.4.0...1.5.0) (2016-12-07)
+
+
+### Bug Fixes
+
+* **compression:** properly handle types and string conversion ([dcb1297](https://github.com/mnubo/smartobjects-js-client/commit/dcb1297))
+* **mnubo:** make ClientOptions.env optional ([007cbe6](https://github.com/mnubo/smartobjects-js-client/commit/007cbe6))
+
+
+### Code Refactoring
+
+* remove window related files ([b515bed](https://github.com/mnubo/smartobjects-js-client/commit/b515bed))
+
+
+### Features
+
+* **owners:** add unclaim of deviceId ([3717112](https://github.com/mnubo/smartobjects-js-client/commit/3717112))
+
+
+### BREAKING CHANGES
+
+* remove any reference to mnubo.static and other related `window` object.
+    Now you can only use the `node` related files and objects.
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/mnubo/smartobjects-js-client/compare/1.3.0...1.4.0) (2016-09-01)
 
