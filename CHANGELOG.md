@@ -1,5 +1,16 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/mnubo/smartobjects-js-client/compare/1.7.0...1.8.0) (2017-04-28)
+
+
+### Features
+
+* **model:** add export model functionality ([e766108](https://github.com/mnubo/smartobjects-js-client/commit/e766108))
+* **owners:** support a body for claim/unclaim of objects ([1768933](https://github.com/mnubo/smartobjects-js-client/commit/1768933))
+
+
+
 <a name="1.7.0"></a>
-# [1.7.0](https://github.com/mnubo/smartobjects-js-client/compare/1.5.0...v1.7.0) (2017-04-03)
+# [1.7.0](https://github.com/mnubo/smartobjects-js-client/compare/1.5.0...1.7.0) (2017-04-03)
 
 
 ### Features
