@@ -1,3 +1,13 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/mnubo/smartobjects-js-client/compare/1.8.0...1.8.1) (2017-05-01)
+
+
+### Bug Fixes
+
+* **authentication:** remove Accept-Encoding header ([7b77f74](https://github.com/mnubo/smartobjects-js-client/commit/7b77f74))
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/mnubo/smartobjects-js-client/compare/1.7.0...1.8.0) (2017-04-28)
 
