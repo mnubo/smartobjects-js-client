@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 import {base64Encode} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
@@ -90,7 +88,7 @@ export class Client {
     options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
     options.headers.set('Accept-Encoding', 'application/json');
 
-    _.merge(options, this.options.httpOptions);
+    Object.assign(options, this.options.httpOptions);
 
     const promise = http.post(options, payload);
 
@@ -131,7 +129,7 @@ export class Client {
     options.headers.set('Authorization', `Bearer ${this.token.value}`);
     options.headers.set('Content-Type', `${contentType}`);
 
-    _.merge(options, this.options.httpOptions);
+    Object.assign(options, this.options.httpOptions);
 
     return options;
   }
