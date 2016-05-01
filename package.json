@@ -40,6 +40,7 @@
     "smartobject"
   ],
   "scripts": {
+    "test": "jasmine spec/mnubo.spec.js",
     "typings": "typings install"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
