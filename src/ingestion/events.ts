@@ -17,4 +17,15 @@ export class Events {
   sendFromDevice(deviceId: string, payload: any) {
     return this.client.post(`/api/v3/objects/${deviceId}/events`, payload);
   }
+
+  @authenticate
+  exists(eventIds: Array<string>|string): Promise<any> {
+    const path = `${this.path}/exists`;
+
+    if (Array.isArray(eventIds)) {
+      return this.client.post(`${path}`, eventIds);
+    } else {
+      return this.client.get(`${path}/${eventIds}`);
+    }
+  }
 }
