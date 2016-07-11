@@ -32,4 +32,15 @@ export class Owners {
   claim(username: string, deviceId: string): Promise<any> {
     return this.client.post(`${this.path}/${username}/objects/${deviceId}/claim`, {});
   }
+
+  @authenticate
+  exists(usernames: Array<string>|string): Promise<any> {
+    const path = `${this.path}/exists`;
+
+    if (Array.isArray(usernames)) {
+      return this.client.post(`${path}`, usernames);
+    } else {
+      return this.client.get(`${path}/${usernames}`);
+    }
+  }
 }
