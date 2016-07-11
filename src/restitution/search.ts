@@ -17,4 +17,9 @@ export class Search {
   createBasicQuery(query: any) {
     return this.client.post(`${this.path}/basic`, query);
   }
+
+  @authenticate
+  validateQuery(query: any) {
+    return this.client.post(`${this.path}/validateQuery`, query);
+  }
 }
