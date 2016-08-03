@@ -1,5 +1,5 @@
 <a name="1.3.0"></a>
-# [1.3.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.2.0...v1.3.0) (2016-08-03)
+# [1.3.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.2.0...1.3.0) (2016-08-03)
 
 
 ### Features
@@ -10,7 +10,7 @@
 
 
 <a name="1.2.0"></a>
-# [1.2.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.1.0...v1.2.0) (2016-07-12)
+# [1.2.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.1.0...1.2.0) (2016-07-12)
 
 
 ### Bug Fixes
@@ -26,7 +26,7 @@
 
 
 <a name="1.1.0"></a>
-# [1.1.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.0.4...v1.1.0) (2016-04-28)
+# [1.1.0](https://github.com/mnubo/mnubo-js-sdk/compare/1.0.4...1.1.0) (2016-04-28)
 
 
 ### Features
