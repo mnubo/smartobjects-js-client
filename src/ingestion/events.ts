@@ -1,5 +1,11 @@
 import {Client} from '../mnubo';
 import {authenticate} from '../decorators';
+import {encodeObjectForUrlParams} from '../utils/underscore'
+
+export interface EventsSendOptions {
+    reportResults?: boolean;
+    objectsMustExist?: boolean;
+}
 
 export class Events {
   private path: string;
@@ -9,8 +15,14 @@ export class Events {
   }
 
   @authenticate
-  send(payload: any): Promise<any> {
-    return this.client.post(this.path, payload);
+  send(payload: any, options?: EventsSendOptions): Promise<any> {
+    let path = this.path;
+
+    if (options) {
+      path += `?${encodeObjectForUrlParams(options)}`;
+    }
+
+    return this.client.post(`${path}`, payload);
   }
 
   @authenticate
