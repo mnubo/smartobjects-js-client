@@ -14,11 +14,22 @@ export enum OAuth2Scopes {
   WRITE
 }
 
+interface ClientCompression {
+  requests: boolean;
+  responses: boolean;
+}
+
 interface ClientOptions {
   id: string;
   secret: string;
   env: string;
   httpOptions?: RequestOptions;
+  compression?: boolean | ClientCompression;
+}
+
+function isClientOptions(object: boolean | ClientCompression): object is ClientCompression {
+    return (<ClientCompression>object).requests !== undefined ||
+           (<ClientCompression>object).responses !== undefined;
 }
 
 class AccessToken {
@@ -54,6 +65,10 @@ export class Client {
         hostname: this.hostname(),
         port: 443
       };
+    }
+
+    if (!options.compression) {
+        options.compression = false;
     }
 
     this.owners = new Owners(this);
@@ -123,11 +138,25 @@ export class Client {
       path: path,
       headers: new Map<string, string>()
     };
+    const compressionAlgorithm = 'gzip';
+    const compression = this.options.compression;
 
     contentType = contentType || 'application/json';
 
     options.headers.set('Authorization', `Bearer ${this.token.value}`);
     options.headers.set('Content-Type', `${contentType}`);
+
+    if (isClientOptions(compression)) {
+      if (compression.requests === true) {
+        options.headers.set('Content-Encoding', compressionAlgorithm);
+      }
+      if (compression.responses === true) {
+        options.headers.set('Accept-Encoding', compressionAlgorithm);
+      }
+    } else if (compression === true) {
+      options.headers.set('Accept-Encoding', compressionAlgorithm);
+      options.headers.set('Content-Encoding', compressionAlgorithm);
+    }
 
     Object.assign(options, this.options.httpOptions);
 

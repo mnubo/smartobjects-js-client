@@ -31,6 +31,18 @@ The initialization of the SDK client requires two mandatory fields:
 - `id` (**mandatory**): The client id.
 - `secret` (**mandatory**): The client secret.
 - `env` (*optional*): The environment where the API calls will be sent. It can be either `sandbox` or `production`. By default the `env` is `sandbox`.
+- `compression` (*optional*): If you want to use `gzip` compression for both inbound and outbound data, set the value to `true`. By default this parameter is `false.
+
+You can also fine grain the `compression` by using this syntax:
+
+```
+compression: {
+  requests: true,  /* sets Accept-Encoding: gzip */
+  responses: true, /* sets Content-Encoding: gzip */
+}
+```
+
+Note that, when using compression, the data being resolved in the Promise will always be JSON. The compression/decompression is done behind the scenes using NodeJS `zlib` library.
 
 ```
 /* Load mnubo SDK. */
