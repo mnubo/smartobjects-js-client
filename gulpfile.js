@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
 var typescript = require('gulp-typescript');
+var conventionalChangelog = require('gulp-conventional-changelog');
 
 var tsProject = typescript.createProject('tsconfig.json');
 
@@ -17,9 +18,7 @@ gulp.task('build', function() {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('changelog', () => {
-  const conventionalChangelog = require('gulp-conventional-changelog');
-
+gulp.task('changelog', function() {
   return gulp.src('CHANGELOG.md')
     .pipe(conventionalChangelog({
       preset: 'angular',
