@@ -2,38 +2,26 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "moduleResolution": "node",
         "declaration": false,
         "noImplicitAny": true,
         "removeComments": false,
         "isolatedModules": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "noLib": false,
         "preserveConstEnums": true,
         "sourceMap": true,
         "suppressImplicitAnyIndexErrors": false,
-        "outDir": "dist"
+        "outDir": "dist",
+        "lib": [
+            "es6"
+        ]
     },
-    "filesGlob": [
-        "./typings/main.d.ts",
-        "./src/**/*.ts"
+    "include": [
+        "src/**/*.ts",
+        "spec/**/*.ts"
     ],
-    "exclude": [],
-    "files": [
-        "./typings/main.d.ts",
-        "./src/decorators.ts",
-        "./src/http/backends/node_backend.ts",
-        "./src/http/http.ts",
-        "./src/http/request.ts",
-        "./src/ingestion/events.ts",
-        "./src/ingestion/objects.ts",
-        "./src/ingestion/owners.ts",
-        "./src/mnubo.static.ts",
-        "./src/mnubo.ts",
-        "./src/restitution/search.ts",
-        "./src/utils/underscore.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    "exclude": [
+        "node_modules"
+    ]
 }

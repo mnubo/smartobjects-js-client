@@ -1,35 +1,35 @@
 {
   "name": "mnubo-sdk",
   "version": "1.4.0",
-  "description": "mnubo SmartObjects SDK for JavaScript developers.",
+  "description": "mnubo SmartObjects JavaScript client",
   "main": "dist/mnubo.js",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mnubo/mnubo-js-sdk.git"
+    "url": "git://github.com/mnubo/smartobjects-js-client.git"
   },
   "engines": {
     "node": ">=0.10.40"
   },
   "devDependencies": {
-    "eslint": "^1.9.0",
-    "eslint-config-defaults": "^7.1.1",
+    "@types/jasmine": "^2.5.38",
+    "@types/lodash": "^4.14.41",
+    "@types/node": "0.0.2",
     "gulp": "^3.9.0",
     "gulp-conventional-changelog": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-typescript": "^2.9.2",
-    "jasmine": "^2.3.2",
-    "jasmine-core": "^2.3.4",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
     "karma": "^0.13.11",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.3.6",
     "karma-jasmine-html-reporter": "^0.1.8",
     "lodash": "^3.10.1",
     "systemjs-builder": "^0.14.9",
-    "typescript": "^1.8.10",
-    "typings": "^0.8.1"
+    "typescript": "^2.1.0"
   },
   "keywords": [
     "mnubo",
@@ -41,8 +41,7 @@
     "smartobject"
   ],
   "scripts": {
-    "test": "jasmine spec/mnubo.spec.js",
-    "typings": "typings install"
+    "test": "jasmine spec/mnubo.spec.js"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
   "license": "MIT"
