@@ -63,7 +63,7 @@ All the API calls return a [Promise](https://developer.mozilla.org/en-US/docs/Mo
 
 - When a promise is successful, you can call the `.then()` function to get the data returned by the mnubo servers. If there is no data, the value is `null`. ex: `client.events.send({...}).then(function(data) { console.log(data); });`
 
-- When a promise is fails, you can call the `.catch()` function to get the error returned by the mnubo servers. If there is no data, the value is `null`. ex: `client.events.send({...}).catch(function(error) { console.log(error); });`
+- When a promise has failed, you can call the `.catch()` function to get the error returned by the mnubo servers. If there is no data, the value is `null`. ex: `client.events.send({...}).catch(function(error) { console.log(error); });`
 
 If you are not familiar with promises, there is an excellent article on [html5rocks](http://www.html5rocks.com/en/tutorials/es6/promises/).
 
