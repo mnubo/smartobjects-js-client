@@ -3,13 +3,7 @@ export function isPresent(val: any) {
 }
 
 export function base64Encode(str: string) {
-  if (typeof btoa !== 'undefined') {
-    return btoa(str);
-  } else if (typeof Buffer !== 'undefined') {
-    return new Buffer(str).toString('base64');
-  } else {
-    return null;
-  }
+  return new Buffer(str).toString('base64');
 }
 
 export function encodeObjectForUrlParams(data: any):string {

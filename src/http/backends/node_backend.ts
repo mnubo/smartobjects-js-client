@@ -8,7 +8,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
   let data = request.payload();
 
   if (request.options.headers.get('Content-Encoding') === 'gzip') {
-      data = zlib.gzipSync(new Buffer(data));
+      data = zlib.gzipSync(new Buffer(data)).toString();
   }
 
   const options: http.RequestOptions = {
@@ -39,7 +39,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
         let payload: string;
 
         if (response.headers['content-encoding'] === 'gzip') {
-          payload = zlib.gunzipSync(buffer);
+          payload = zlib.gunzipSync(buffer).toString();
         } else {
           payload = buffer.toString();
         }
