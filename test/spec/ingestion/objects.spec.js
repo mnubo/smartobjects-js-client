@@ -25,7 +25,7 @@ describe('ingestion: objects', function() {
       secret: process.env.MNUBO_CLIENT_SECRET,
       httpOptions: {
         protocol: 'https',
-        hostname: 'rest-sandbox-dev.api.mnubo.com',
+        hostname: 'sandbox.api.mnubo.com',
         port: 443
       }
     });
