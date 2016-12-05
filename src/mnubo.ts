@@ -14,12 +14,12 @@ export enum OAuth2Scopes {
   WRITE
 }
 
-interface ClientCompression {
+export interface ClientCompression {
   requests: boolean;
   responses: boolean;
 }
 
-interface ClientOptions {
+export interface ClientOptions {
   id: string;
   secret: string;
   env?: string;

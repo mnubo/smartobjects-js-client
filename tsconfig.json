@@ -3,25 +3,23 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "declaration": false,
+        "declaration": true,
         "noImplicitAny": true,
         "removeComments": false,
-        "isolatedModules": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "suppressImplicitAnyIndexErrors": false,
         "outDir": "dist",
         "lib": [
             "es6"
         ]
     },
     "include": [
-        "src/**/*.ts",
-        "spec/**/*.ts"
+        "src/**/*.ts"
     ],
     "exclude": [
+        "dist",
         "node_modules"
     ]
 }
