@@ -22,7 +22,7 @@ interface ClientCompression {
 interface ClientOptions {
   id: string;
   secret: string;
-  env: string;
+  env?: string;
   httpOptions?: RequestOptions;
   compression?: boolean | ClientCompression;
 }
