@@ -3,6 +3,10 @@
   "version": "1.4.0",
   "description": "mnubo SmartObjects JavaScript client",
   "main": "dist/mnubo.js",
+  "files": [
+    "dist/",
+    "src/"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mnubo/smartobjects-js-client.git"
