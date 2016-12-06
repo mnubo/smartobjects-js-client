@@ -8,9 +8,6 @@
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
   "license": "MIT",
-  "dependencies": {
-    "mnubo-sdk": ">=0.0.0"
-  },
   "devDependencies": {
     "jasmine": "^2.5.2",
     "jasmine-core": "^2.5.2",
