@@ -1,14 +1,5 @@
 *.tgz
 
-/.eslintignore
-/.eslintrc
 /.npmignore
 
-/gulpfile.js
-/karma.conf.js
-/tsconfig.json
-/tslint.json
-/typings.json
-
 /test
-/typings

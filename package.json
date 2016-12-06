@@ -12,13 +12,8 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.38",
-    "@types/lodash": "^4.14.41",
     "@types/node": "0.0.2",
-    "gulp": "^3.9.0",
-    "gulp-conventional-changelog": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-typescript": "^2.9.2",
-    "lodash": "^3.10.1",
+    "conventional-changelog": "^1.1.0",
     "typescript": "^2.1.0"
   },
   "keywords": [
