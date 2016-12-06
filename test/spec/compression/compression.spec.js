@@ -21,13 +21,9 @@ describe('compression', function() {
 
   beforeEach(function() {
     options = {
-      id: 'JYWYwGU0mZGoVSdPi06g39Gl0gDX4OSCcHhuHKXAOqvowDrMUj',
-      secret: 'cO0Kl8F6DfzNVLlAaz2UXkQx2wpG8I6TftXwGnRpS0jwd37IyS',
-      httpOptions: {
-        protocol: 'https',
-        hostname: 'rest-sandbox-dev.api.mnubo.com',
-        port: 443
-      },
+      id: process.env.MNUBO_CLIENT_ID,
+      secret: process.env.MNUBO_CLIENT_SECRET,
+      env: 'sandbox'
     };
 
     mql = {

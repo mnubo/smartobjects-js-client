@@ -26,11 +26,7 @@ describe('ingestion: owners', function() {
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,
-      httpOptions: {
-        protocol: 'https',
-        hostname: 'sandbox.api.mnubo.com',
-        port: 443
-      }
+      env: 'sandbox'
     });
   });
 
