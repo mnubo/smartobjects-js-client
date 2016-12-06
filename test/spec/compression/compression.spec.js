@@ -31,7 +31,7 @@ describe('compression', function() {
       select: [
         {value: 'x_event_type'},
       ],
-      limit: 10000
+      limit: 500
     };
   });
 
@@ -41,7 +41,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(10000);
+      expect(response.rows.length).toBe(500);
       done();
     }).catch((error) => {
       fail(error);
@@ -57,7 +57,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(10000);
+      expect(response.rows.length).toBe(500);
       done();
     }).catch((error) => {
       fail(error);
@@ -73,7 +73,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(10000);
+      expect(response.rows.length).toBe(500);
       done();
     }).catch((error) => {
       fail(error);

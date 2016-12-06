@@ -5,10 +5,10 @@ import * as zlib from 'zlib';
 import {Request, RequestMethods} from '../request';
 
 export function nodeHttpRequest(request: Request): Promise<any> {
-  let data = request.payload();
+  let data: string | Buffer = request.payload();
 
   if (request.options.headers.get('Content-Encoding') === 'gzip') {
-      data = zlib.gzipSync(new Buffer(data)).toString();
+      data = zlib.gzipSync(new Buffer(data));
   }
 
   const options: http.RequestOptions = {
@@ -36,10 +36,10 @@ export function nodeHttpRequest(request: Request): Promise<any> {
 
       response.on('end', function() {
         const buffer = Buffer.concat(buffers);
-        let payload: string;
+        let payload: string | Buffer;
 
         if (response.headers['content-encoding'] === 'gzip') {
-          payload = zlib.gunzipSync(buffer).toString();
+          payload = zlib.gunzipSync(buffer);
         } else {
           payload = buffer.toString();
         }
@@ -49,7 +49,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
             response.headers['content-type'] &&
             response.headers['content-type'].indexOf('application/json') !== -1) {
 
-            payload = JSON.parse(payload);
+            payload = JSON.parse(payload.toString());
           }
         } else {
           payload = null;
