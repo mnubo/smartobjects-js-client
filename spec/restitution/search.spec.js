@@ -12,7 +12,7 @@
  * ---------------------------------------------------------------------------
  */
 
-const mnubo = require('mnubo-sdk');
+const mnubo = require('../../dist/mnubo');
 
 describe('restitution: search', function() {
   let client;

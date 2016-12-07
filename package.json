@@ -18,7 +18,10 @@
     "@types/jasmine": "^2.5.38",
     "@types/node": "0.0.2",
     "conventional-changelog": "^1.1.0",
-    "typescript": "^2.1.0"
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.5.2",
+    "typescript": "^2.1.0",
+    "uuid": "^3.0.1"
   },
   "keywords": [
     "mnubo",
@@ -31,7 +34,7 @@
   ],
   "scripts": {
     "build": "node_modules/typescript/bin/tsc",
-    "test": "jasmine spec/mnubo.spec.js"
+    "test": "JASMINE_CONFIG_PATH=jasmine.json node_modules/jasmine/bin/jasmine.js"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
   "license": "MIT"

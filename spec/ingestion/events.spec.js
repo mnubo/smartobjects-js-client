@@ -12,7 +12,7 @@
 * ---------------------------------------------------------------------------
 */
 
-const mnubo = require('mnubo-sdk');
+const mnubo = require('../../dist/mnubo');
 const uuid = require('uuid');
 
 describe('ingestion: events', function() {

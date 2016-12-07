@@ -12,17 +12,16 @@
 * ---------------------------------------------------------------------------
 */
 
-const mnubo = require('mnubo-sdk');
+const mnubo = require('../../dist/mnubo');
 const uuid = require('uuid');
 
-describe('ingestion: owners', function() {
+describe('ingestion: objects', function() {
   let client;
-  const username1 = 'owner1';
-  const username2 = uuid.v4();
-  const username3 = uuid.v4();
-  const username4 = uuid.v4();
+  let deviceId;
+  const randomDevices = [uuid.v4(), uuid.v4()];
 
   beforeEach(function() {
+    deviceId = 'BA2DBC92-E24C-48D4-8F73-7748683E18CC';
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,
@@ -31,10 +30,10 @@ describe('ingestion: owners', function() {
   });
 
   describe('.create()', function() {
-    it('should create a new owner', function(done) {
-      client.owners.create({
-        username: username1,
-        x_password: username1
+    it('should create a single object', function(done) {
+      client.objects.create({
+        x_device_id: deviceId,
+        x_object_type: 'watch',
       }).then((response) => {
         expect(response).toBeTruthy();
         done();
@@ -43,22 +42,16 @@ describe('ingestion: owners', function() {
         done();
       });
     });
-  });
 
-  describe('.createUpdate()', function() {
-    it('should create a batch of owners', function(done) {
-      client.owners.createUpdate([
+    it('should create a batch of objects', function(done) {
+      client.objects.createUpdate([
         {
-          username: username2,
-          x_password: username2
+          x_device_id: randomDevices[0],
+          x_object_type: 'watch',
         },
         {
-          username: username3,
-          x_password: username3
-        },
-        {
-          username: username4,
-          x_password: username4
+          x_device_id: randomDevices[1],
+          x_object_type: 'watch',
         }
       ]).then((response) => {
         expect(response).toBeTruthy();
@@ -70,25 +63,11 @@ describe('ingestion: owners', function() {
     });
   });
 
-  describe('.update()', function() {
-    it('should update owner registration lat/lon', function(done) {
-      client.owners.update(username1,{
-        x_registration_latitude: 45,
-        x_registration_longitude: 43
-      }).then(() => {
-        done();
-      }).catch((error) => {
-        fail(error);
-        done();
-      });
-    });
-  });
-
   describe('.exists()', function() {
-    it('should check if one owner exists if only one username is passed', (done) => {
-      client.owners.exists(username1)
+    it('should check if one device id exists if only one device id is passed', (done) => {
+      client.objects.exists(deviceId)
       .then((response) => {
-        expect(response[username1]).toBe(true);
+        expect(response[deviceId]).toBe(true);
         done();
       })
       .catch((error) => {
@@ -97,19 +76,17 @@ describe('ingestion: owners', function() {
       });
     });
 
-    it('should check if multiple owner exist if an array of usernames is passed', (done) => {
-      client.owners.exists([
-        'fake1',
-        'fake2',
-        'owner1',
-        'fake4'
+    it('should check if multiple device ids exist if an array of device ids is passed', (done) => {
+      client.objects.exists([
+        'A4D56436-7E77-4D9B-B28A-C1336435AD00',
+        '2A6F88EC-93D2-46DD-A455-3D7003588F6A',
+        'BA2DBC92-E24C-48D4-8F73-7748683E18CC'
       ])
       .then((response) => {
         expect(response).toEqual([
-          {'fake1': false},
-          {'fake2': false},
-          {'owner1': true},
-          {'fake4': false}
+          {'A4D56436-7E77-4D9B-B28A-C1336435AD00': false},
+          {'2A6F88EC-93D2-46DD-A455-3D7003588F6A': false},
+          {'BA2DBC92-E24C-48D4-8F73-7748683E18CC': true}
         ]);
         done();
       })
@@ -120,12 +97,26 @@ describe('ingestion: owners', function() {
     });
   });
 
-  describe('.delete()', function() {
-    it('should delete an owner', (done) => {
-      client.owners.delete(username1).then(() => {
+  describe('.update()', function() {
+    it('should update a given device', (done) => {
+      client.objects.update(deviceId, {
+        x_object_type: 'swatch'
+      })
+      .then(() => {
         done();
       })
       .catch((error) => {
+        fail(error);
+        done();
+      });
+    });
+  });
+
+  describe('.delete()', function() {
+    it('should delete an object', function(done) {
+      client.objects.delete(deviceId).then(() => {
+        done();
+      }).catch((error) => {
         fail(error);
         done();
       });

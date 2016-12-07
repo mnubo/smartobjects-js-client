@@ -12,8 +12,7 @@
  * ---------------------------------------------------------------------------
  */
 
-const mnubo = require('mnubo-sdk');
-const nodeHttpRequest = require('mnubo-sdk/dist/http/backends/node_backend');
+const mnubo = require('../../dist/mnubo');
 
 describe('compression', function() {
   let mql;

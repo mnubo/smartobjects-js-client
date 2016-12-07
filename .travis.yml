@@ -2,9 +2,7 @@ language: node_js
 node_js:
 - '6'
 before_script:
-- cd test
-- npm install
-- npm link ../
+- npm run build
 script:
 - npm test
 env:
