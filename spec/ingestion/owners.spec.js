@@ -72,7 +72,7 @@ describe('ingestion: owners', function() {
 
   describe('.update()', function() {
     it('should update owner registration lat/lon', function(done) {
-      client.owners.update(username1,{
+      client.owners.update(username1, {
         x_registration_latitude: 45,
         x_registration_longitude: 43
       }).then(() => {
