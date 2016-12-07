@@ -37,14 +37,14 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         },
         {
           event_id: uuids[1],
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-2',
+          x_event_type: 'event_type1',
         },
       ]).then((response) => {
         expect(response).toBeNull();
@@ -62,7 +62,7 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         }
       ], {
         reportResults: true
@@ -84,7 +84,7 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         }
       ], {
         objectsMustExist: true
