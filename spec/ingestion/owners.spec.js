@@ -106,6 +106,20 @@ describe('ingestion: owners', function() {
     });
   });
 
+  describe('.unclaim()', function() {
+    it('should unclaim a device id for a given username', function(done) {
+      client.owners.unclaim(username1, deviceId)
+        .then((response) => {
+          expect(response).toBe(null);
+          done();
+        })
+        .catch((error) => {
+          fail(error);
+          done();
+        });
+    });
+  });
+
   describe('.exists()', function() {
     it('should check if one owner exists if only one username is passed', (done) => {
       client.owners.exists(username1)

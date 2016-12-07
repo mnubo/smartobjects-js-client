@@ -34,6 +34,11 @@ export class Owners {
   }
 
   @authenticate
+  unclaim(username: string, deviceId: string): Promise<any> {
+    return this.client.post(`${this.path}/${username}/objects/${deviceId}/unclaim`, {});
+  }
+
+  @authenticate
   exists(usernames: Array<string>|string): Promise<any> {
     const path = `${this.path}/exists`;
 
