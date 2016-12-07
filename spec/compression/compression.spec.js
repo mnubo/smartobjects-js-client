@@ -18,7 +18,7 @@ describe('compression', function() {
   let mql;
   let options;
 
-  beforeEach(function() {
+  beforeAll(function() {
     options = {
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,

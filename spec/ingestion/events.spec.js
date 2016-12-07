@@ -20,7 +20,7 @@ describe('ingestion: events', function() {
   let deviceId;
   let uuids = [ uuid.v4(), uuid.v4() ];
 
-  beforeEach(function() {
+  beforeAll(function() {
     deviceId = 'BA2DBC92-E24C-48D4-8F73-7748683E18CC';
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
