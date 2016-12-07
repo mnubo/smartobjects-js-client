@@ -21,12 +21,20 @@ describe('ingestion: owners', function() {
   const username2 = uuid.v4();
   const username3 = uuid.v4();
   const username4 = uuid.v4();
+  let deviceId = uuid.v4();
 
-  beforeEach(function() {
+  beforeAll(function(done) {
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,
       env: 'sandbox'
+    });
+
+    client.objects.create({
+      x_device_id: deviceId,
+      x_object_type: 'watch'
+    }).then(() => {
+      done();
     });
   });
 
@@ -72,7 +80,7 @@ describe('ingestion: owners', function() {
 
   describe('.update()', function() {
     it('should update owner registration lat/lon', function(done) {
-      client.owners.update(username1,{
+      client.owners.update(username1, {
         x_registration_latitude: 45,
         x_registration_longitude: 43
       }).then(() => {
@@ -81,6 +89,34 @@ describe('ingestion: owners', function() {
         fail(error);
         done();
       });
+    });
+  });
+
+  describe('.claim()', function() {
+    it('should claim a device id for a given username', function(done) {
+      client.owners.claim(username1, deviceId)
+      .then((response) => {
+        expect(response).toBe(null);
+        done();
+      })
+      .catch((error) => {
+        fail(error);
+        done();
+      });
+    });
+  });
+
+  describe('.unclaim()', function() {
+    it('should unclaim a device id for a given username', function(done) {
+      client.owners.unclaim(username1, deviceId)
+        .then((response) => {
+          expect(response).toBe(null);
+          done();
+        })
+        .catch((error) => {
+          fail(error);
+          done();
+        });
     });
   });
 

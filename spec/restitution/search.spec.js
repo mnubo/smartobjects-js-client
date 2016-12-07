@@ -17,7 +17,7 @@ const mnubo = require('../../dist/mnubo');
 describe('restitution: search', function() {
   let client;
 
-  beforeEach(function() {
+  beforeAll(function() {
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,

@@ -20,7 +20,7 @@ describe('ingestion: events', function() {
   let deviceId;
   let uuids = [ uuid.v4(), uuid.v4() ];
 
-  beforeEach(function() {
+  beforeAll(function() {
     deviceId = 'BA2DBC92-E24C-48D4-8F73-7748683E18CC';
     client = new mnubo.Client({
       id: process.env.MNUBO_CLIENT_ID,
@@ -37,14 +37,14 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         },
         {
           event_id: uuids[1],
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-2',
+          x_event_type: 'event_type1',
         },
       ]).then((response) => {
         expect(response).toBeNull();
@@ -62,7 +62,7 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         }
       ], {
         reportResults: true
@@ -84,7 +84,7 @@ describe('ingestion: events', function() {
           x_object: {
             x_device_id: deviceId
           },
-          x_event_type: 'mnubo-js-sdk-e2e-event-type-1',
+          x_event_type: 'event_type1',
         }
       ], {
         objectsMustExist: true

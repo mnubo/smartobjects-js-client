@@ -1,4 +1,7 @@
-# mnubo JavaScript SDK
+# SmartObjects JavaScript Client
+
+[![Build status](https://travis-ci.org/mnubo/smartobjects-js-client.svg?branch=master)](https://travis-ci.org/mnubo/smartobjects-js-client)
+[![npm version](https://badge.fury.io/js/mnubo-sdk.svg)](https://www.npmjs.com/package/mnubo-sdk)
 
 ## Introduction
 
