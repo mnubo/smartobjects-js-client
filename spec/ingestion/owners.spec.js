@@ -120,6 +120,51 @@ describe('ingestion: owners', function() {
     });
   });
 
+  describe('.batchClaim()', function() {
+    it('should claim an array of device ids for given usernames', function(done) {
+      client.owners.batchClaim([
+        {
+          username: username1,
+          x_device_id: deviceId,
+          x_timestamp: new Date().toISOString()
+        }
+      ]).then((response) => {
+          expect(response).toEqual([
+            {
+              id: deviceId,
+              result: 'success'
+            }
+          ]);
+          done();
+      }).catch((error) => {
+          fail(error);
+          done();
+      })
+    })
+  })
+
+  describe('.batchUnclaim()', function() {
+    it('should unclaim an array of device ids for given usernames', function(done) {
+      client.owners.batchUnclaim([
+        {
+          username: username1,
+          x_device_id: deviceId
+        }
+      ]).then((response) => {
+          expect(response).toEqual([
+            {
+              id: deviceId,
+              result: 'success'
+            }
+          ]);
+          done();
+      }).catch((error) => {
+          fail(error);
+          done();
+      })
+    })
+  })
+
   describe('.exists()', function() {
     it('should check if one owner exists if only one username is passed', (done) => {
       client.owners.exists(username1)

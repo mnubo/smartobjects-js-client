@@ -34,8 +34,18 @@ export class Owners {
   }
 
   @authenticate
+  batchClaim(claims: Array<any>): Promise<any> {
+    return this.client.post(`${this.path}/claim`, claims);
+  }
+
+  @authenticate
   unclaim(username: string, deviceId: string): Promise<any> {
     return this.client.post(`${this.path}/${username}/objects/${deviceId}/unclaim`, {});
+  }
+
+  @authenticate
+  batchUnclaim(unclaims: Array<any>): Promise<any> {
+    return this.client.post(`${this.path}/unclaim`, unclaims);
   }
 
   @authenticate
