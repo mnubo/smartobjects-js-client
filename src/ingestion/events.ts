@@ -26,7 +26,7 @@ export class Events {
   }
 
   @authenticate
-  sendFromDevice(deviceId: string, payload: any) {
+  sendFromDevice(deviceId: string, payload: any): Promise<any> {
     return this.client.post(`/api/v3/objects/${deviceId}/events`, payload);
   }
 

@@ -6,6 +6,7 @@ import {Owners} from './ingestion/owners';
 import {Objects} from './ingestion/objects';
 import {Events} from './ingestion/events';
 import {Search} from './restitution/search';
+import {Bigdata} from './bigdata/BigData';
 
 export enum OAuth2Scopes {
   ALL,
@@ -40,7 +41,7 @@ class AccessToken {
   }
 
   isValid() {
-    var now = new Date();
+    const now = new Date();
 
     return now.getTime() < this.requestedAt.getTime() + this.expiresIn * 1000;
   }
@@ -51,6 +52,7 @@ export class Client {
   public objects: Objects;
   public events: Events;
   public search: Search;
+  public bigdata: Bigdata;
 
   private token: AccessToken;
 
@@ -75,6 +77,7 @@ export class Client {
     this.objects = new Objects(this);
     this.events = new Events(this);
     this.search = new Search(this);
+    this.bigdata = new Bigdata(this);
   }
 
   hostname(): string {
