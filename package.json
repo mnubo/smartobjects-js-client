@@ -20,7 +20,7 @@
     "conventional-changelog": "^1.1.0",
     "jasmine": "^2.5.2",
     "jasmine-core": "^2.5.2",
-    "typescript": "^2.1.0",
+    "typescript": "^2.2.2",
     "uuid": "^3.0.1"
   },
   "keywords": [
@@ -33,7 +33,8 @@
     "smartobject"
   ],
   "scripts": {
-    "build": "node_modules/typescript/bin/tsc",
+    "clean": "rm -rf node_modules dist",
+    "build": "tsc",
     "test": "JASMINE_CONFIG_PATH=jasmine.json node_modules/jasmine/bin/jasmine.js"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
