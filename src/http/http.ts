@@ -3,7 +3,7 @@ import {nodeHttpRequest} from './backends/node_backend';
 
 export class http {
   static request(request: Request): Promise<any> {
-      return nodeHttpRequest(request);
+    return nodeHttpRequest(request);
   }
 
   static get(options: RequestOptions): Promise<any> {
