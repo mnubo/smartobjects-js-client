@@ -6,7 +6,7 @@ import {Owners} from './ingestion/owners';
 import {Objects} from './ingestion/objects';
 import {Events} from './ingestion/events';
 import {Search} from './restitution/search';
-import {Bigdata} from './bigdata/BigData';
+import {Bigdata} from './bigdata/bigdata';
 
 export enum OAuth2Scopes {
   ALL,
