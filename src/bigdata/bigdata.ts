@@ -31,34 +31,4 @@ export class Bigdata {
   streamPage(pageId: string): Promise<StreamPageResponse> {
     return this.client.get(basePath + '/streampage/' + pageId)
   }
-
-  @authenticate
-  exportAllData(query: object): Promise<{ columns: Array<object>, rows: Array<Array<any>> }> {
-    return this.startExport(query).then(({ streamsFirstPages, columns }) => {
-      const allResponsesPromise: Promise<StreamPageResponse[]> = Promise.all(streamsFirstPages.map((pageId) => {
-        return this.streamToTheLastpage(pageId);
-      }));
-
-      return allResponsesPromise.then((allResponses: Array<StreamPageResponse>) => {
-        return {
-          columns: columns,
-          rows: allResponses.reduce(mergeStreamResponse, { rows: [] }).rows
-        };
-      });
-    });
-  }
-
-  @authenticate
-  private streamToTheLastpage(pageId: string): Promise<StreamPageResponse> {
-    return this.streamPage(pageId).then(response => {
-      const nextPage = response.nextPage;
-
-      if (nextPage) {
-        return this.streamToTheLastpage(nextPage)
-            .then((nextResponse) => mergeStreamResponse(response, nextResponse));
-      } else {
-        return response;
-      }
-    });
-  }
 }

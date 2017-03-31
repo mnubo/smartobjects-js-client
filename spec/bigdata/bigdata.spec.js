@@ -45,22 +45,4 @@ describe('bigdata', function() {
             });
         });
     });
-
-    describe('.exportAllData()', function() {
-        it('should return the data for the query', function(done) {
-            client.bigdata.exportAllData({
-                from: 'event',
-                select: [
-                    { value: 'x_event_type' },
-                ]
-            }).then((response) => {
-                expect(response.columns).toBeDefined();
-                expect(response.rows).toBeDefined();
-                done();
-            }).catch((error) => {
-                fail(error);
-                done();
-            })
-        });
-    });
 });
