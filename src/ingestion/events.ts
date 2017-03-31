@@ -3,8 +3,8 @@ import {authenticate} from '../decorators';
 import {encodeObjectForUrlParams} from '../utils/underscore'
 
 export interface EventsSendOptions {
-    reportResults?: boolean;
-    objectsMustExist?: boolean;
+  reportResults?: boolean;
+  objectsMustExist?: boolean;
 }
 
 export class Events {
@@ -26,12 +26,18 @@ export class Events {
   }
 
   @authenticate
-  sendFromDevice(deviceId: string, payload: any): Promise<any> {
-    return this.client.post(`/api/v3/objects/${deviceId}/events`, payload);
+  sendFromDevice(deviceId: string, payload: any, options?: EventsSendOptions): Promise<any> {
+    let path = `/api/v3/objects/${deviceId}/events`;
+
+    if (options) {
+      path += `?${encodeObjectForUrlParams(options)}`;
+    }
+
+    return this.client.post(path, payload);
   }
 
   @authenticate
-  exists(eventIds: Array<string>|string): Promise<any> {
+  exists(eventIds: Array<string> | string): Promise<any> {
     const path = `${this.path}/exists`;
 
     if (Array.isArray(eventIds)) {
