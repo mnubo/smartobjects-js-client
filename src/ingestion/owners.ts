@@ -29,8 +29,8 @@ export class Owners {
   }
 
   @authenticate
-  claim(username: string, deviceId: string): Promise<any> {
-    return this.client.post(`${this.path}/${username}/objects/${deviceId}/claim`, {});
+  claim(username: string, deviceId: string, payload: any): Promise<any> {
+    return this.client.post(`${this.path}/${username}/objects/${deviceId}/claim`, payload);
   }
 
   @authenticate
@@ -39,8 +39,8 @@ export class Owners {
   }
 
   @authenticate
-  unclaim(username: string, deviceId: string): Promise<any> {
-    return this.client.post(`${this.path}/${username}/objects/${deviceId}/unclaim`, {});
+  unclaim(username: string, deviceId: string, payload: any): Promise<any> {
+    return this.client.post(`${this.path}/${username}/objects/${deviceId}/unclaim`, payload);
   }
 
   @authenticate
