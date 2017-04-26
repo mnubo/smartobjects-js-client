@@ -7,6 +7,7 @@ import {Objects} from './ingestion/objects';
 import {Events} from './ingestion/events';
 import {Search} from './restitution/search';
 import {Bigdata} from './bigdata/bigdata';
+import {Model} from './model/model';
 
 export enum OAuth2Scopes {
   ALL,
@@ -53,6 +54,7 @@ export class Client {
   public events: Events;
   public search: Search;
   public bigdata: Bigdata;
+  public model: Model;
 
   private token: AccessToken;
 
@@ -78,6 +80,7 @@ export class Client {
     this.events = new Events(this);
     this.search = new Search(this);
     this.bigdata = new Bigdata(this);
+    this.model = new Model(this);
   }
 
   hostname(): string {
