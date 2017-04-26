@@ -120,6 +120,36 @@ describe('ingestion: owners', function() {
     });
   });
 
+  describe('.claim()', function() {
+    it('should claim a device id for a given username with a body', function(done) {
+      client.owners.claim(username1, deviceId, {
+        x_timestamp: "2017-04-26T00:40:12+00:00"
+      }).then((response) => {
+        expect(response).toBe(null);
+        done();
+      })
+      .catch((error) => {
+        fail(error);
+        done();
+      });
+    });
+  });
+
+  describe('.unclaim()', function() {
+    it('should unclaim a device id for a given username with a body', function(done) {
+      client.owners.unclaim(username1, deviceId, {
+        x_timestamp: "2017-04-26T00:40:12+00:00"
+      }).then((response) => {
+          expect(response).toBe(null);
+          done();
+        })
+        .catch((error) => {
+          fail(error);
+          done();
+        });
+    });
+  });
+
   describe('.batchClaim()', function() {
     it('should claim an array of device ids for given usernames', function(done) {
       client.owners.batchClaim([
