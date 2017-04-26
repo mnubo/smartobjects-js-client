@@ -4,7 +4,7 @@ node_js:
 before_script:
 - npm run build
 script:
-- 'if [ "$TRAVIS_PULL_REQUEST" != "1" ]; then npm test; fi'
+- 'if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then npm test; fi'
 env:
   global:
   - secure: gpmFDuco9LHLgbYESDVlVcVB9dK1hJwHzhjaCEfoGKLyW/IqAzYnZLrxYMCVn86ORw7NJo2MRnrF/Kh1rGceluSdNi0GQU9WUHcouYftzQIqiY1RqIAYk5fxZwp+alch4FtNwq2BdAtssrv2I0B2TDWyoFNYrv9rA5Wzs4hG+6N3J967VQnk/B3Xwj5mg4N3dAlgGhDG9yXf984Ul1pGZW0udKMljF6jXbzXElROef+OtChREUSbo0XSvop/Zw9kqnKSpsVgK7sULR1YVmD8hpQzkXynzXe/sELxCzXvmgHCEIDHFQriHqiJABlWSU34YNgEV4I3E/1TWoSwlXBqdimHkPFzxBzftOMy3hNLg9cGSyJ7Uv/Qcmq91jwt2jWEm23lhRyuekGo1XilxD2zwHPgtWwn5XteyrcjgEwemQQwQexI4lprXl35CZbvM0ZVV4Zl/4ZipPuhKb3CUaUCD7g7eSljGXEbKS3do8bXbTShMDtkd6JVYkFJpUUODnPuRB/48pWA63n/gizwD9Q+bw9QSfP0WrEY1uyPeJRFzUf7Hx5PkJpyUko9awwSFWRmU2TY9L4v8BXfTnyxysSXUWplMf7apUxo8bEvoaQQNVdn37JkMH5Kfus/L/DJTlnCj1LsiXrMWdk61hjahpF33sSxPoxX0vX9po36mL4JDPY=
