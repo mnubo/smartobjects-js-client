@@ -55,10 +55,14 @@ export function nodeHttpRequest(request: Request): Promise<any> {
           payload = null;
         }
 
-        if (response.statusCode >= 200 && response.statusCode < 300) {
+        const statusCode = response.statusCode;
+        if (statusCode >= 200 && statusCode < 300) {
           resolve(payload);
         } else {
-          reject(payload);
+          reject({
+            statusCode,
+            payload
+          });
         }
       });
     };

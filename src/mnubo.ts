@@ -1,6 +1,7 @@
 import {base64Encode} from './utils/underscore';
 import {http} from './http/http';
 import {RequestOptions} from './http/request';
+import * as promiseRetry from 'promise-retry';
 
 import {Owners} from './ingestion/owners';
 import {Objects} from './ingestion/objects';
@@ -21,15 +22,22 @@ export interface ClientCompression {
   responses: boolean;
 }
 
+export interface ExponentialBackoff {
+  numberOfAttempts: number;
+  initialDelayInMillis: number;
+  onRetry: (attempt: number) => any;
+}
+
 export interface ClientOptions {
   id: string;
   secret: string;
   env?: string;
   httpOptions?: RequestOptions;
   compression?: boolean | ClientCompression;
+  exponentialBackoff?: ExponentialBackoff;
 }
 
-function isClientOptions(object: boolean | ClientCompression): object is ClientCompression {
+function isClientCompression(object: boolean | ClientCompression): object is ClientCompression {
     return (<ClientCompression>object).requests !== undefined ||
            (<ClientCompression>object).responses !== undefined;
 }
@@ -151,7 +159,7 @@ export class Client {
     options.headers.set('Authorization', `Bearer ${this.token.value}`);
     options.headers.set('Content-Type', `${contentType}`);
 
-    if (isClientOptions(compression)) {
+    if (isClientCompression(compression)) {
       if (compression.requests === true) {
         options.headers.set('Content-Encoding', compressionAlgorithm);
       }
@@ -168,19 +176,45 @@ export class Client {
     return options;
   }
 
+  possiblyRetry(f: () => Promise<any>): Promise<any> {
+    const exponentialBackoff = this.options.exponentialBackoff;
+    if (!exponentialBackoff) {
+      return f().catch((err) => Promise.reject(err.payload));
+    } else {
+      const opts: any = {
+        retries: exponentialBackoff.numberOfAttempts,
+        minTimeout: exponentialBackoff.initialDelayInMillis,
+        randomize: true
+      };
+
+      return promiseRetry((retry: any, attempt: number) => {
+        return f().catch((err) => {
+          if (err.statusCode === 503) {
+            if (attempt <= exponentialBackoff.numberOfAttempts) {
+              exponentialBackoff.onRetry(attempt);
+            }
+            return retry();
+          } else {
+            return Promise.reject(err.payload);
+          }
+        });
+      }, opts);
+    }
+  }
+
   get(path: string, contentType?: string) {
-    return http.get(this.buildHttpOptions(path, contentType));
+    return this.possiblyRetry(() => http.get(this.buildHttpOptions(path, contentType)));
   }
 
   post(path: string, payload: any, contentType?: string) {
-    return http.post(this.buildHttpOptions(path, contentType), payload);
+    return this.possiblyRetry(() => http.post(this.buildHttpOptions(path, contentType), payload));
   }
 
   put(path: string, payload: any, contentType?: string) {
-    return http.put(this.buildHttpOptions(path, contentType), payload);
+    return this.possiblyRetry(() => http.put(this.buildHttpOptions(path, contentType), payload));
   }
 
   delete (path: string, contentType?: string) {
-    return http.delete(this.buildHttpOptions(path, contentType));
+    return this.possiblyRetry(() => http.delete(this.buildHttpOptions(path, contentType)));
   }
 }

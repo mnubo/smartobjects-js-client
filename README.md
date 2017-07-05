@@ -34,18 +34,8 @@ The initialization of the SDK client requires two mandatory fields:
 - `id` (**mandatory**): The client id.
 - `secret` (**mandatory**): The client secret.
 - `env` (*optional*): The environment where the API calls will be sent. It can be either `sandbox` or `production`. By default the `env` is `sandbox`.
-- `compression` (*optional*): If you want to use `gzip` compression for both inbound and outbound data, set the value to `true`. By default this parameter is `false.
-
-You can also fine grain the `compression` by using this syntax:
-
-```
-compression: {
-  requests: true,  /* sets Accept-Encoding: gzip */
-  responses: true, /* sets Content-Encoding: gzip */
-}
-```
-
-Note that, when using compression, the data being resolved in the Promise will always be JSON. The compression/decompression is done behind the scenes using NodeJS `zlib` library.
+- `compression` (*optional*): If you want to use `gzip` compression for both inbound and outbound data, set the value to `true`. By default this parameter is `false`.
+- `exponentialBackoff` (*optional*): If you want to use exponential back off retries. By default, the feature is off (`null`).
 
 ```
 /* Load mnubo SDK. */
@@ -58,6 +48,30 @@ var client = new mnubo.Client({
   secret: 'B0KcvAeSZJuSXg9Hi0IYZKcsCNNUkw8bxsZ0GSgAW5cWKARa6m',
   env: 'production'
 });
+```
+
+#### Compression
+You can also fine grain the `compression` by using this syntax:
+
+```
+compression: {
+  requests: true,  /* sets Accept-Encoding: gzip */
+  responses: true, /* sets Content-Encoding: gzip */
+}
+```
+
+Note that, when using compression, the data being resolved in the Promise will always be JSON. The compression/decompression is done behind the scenes using NodeJS `zlib` library.
+
+#### Exponential backoff retries
+The configuration to turn on the feature looks like this:
+```typescript
+{
+  numberOfAttempts: 2, // default to 5 if undefined
+  initialDelayInMillis: 100, // default to 500 if undefined
+  onRetry: (attempt: number) => { , // default to nothing if undefined
+    console.log('Attempt #' + attempt);
+  }
+}
 ```
 
 ### API Calls
