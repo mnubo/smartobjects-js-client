@@ -1,10 +1,16 @@
 const mnubo = require('../../dist/mnubo');
 
 describe('bigdata', function() {
+    const original = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     const client = new mnubo.Client({
         id: process.env.MNUBO_CLIENT_ID,
         secret: process.env.MNUBO_CLIENT_SECRET,
         env: 'sandbox'
+    });
+
+    afterAll(() => {
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = original;
     });
 
     describe('.startExport()', function() {
