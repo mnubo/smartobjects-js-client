@@ -23,9 +23,9 @@ export interface ClientCompression {
 }
 
 export interface ExponentialBackoff {
-  numberOfAttempts: number;
-  initialDelayInMillis: number;
-  onRetry: (attempt: number) => any;
+  numberOfAttempts?: number;
+  initialDelayInMillis?: number;
+  onRetry?: (attempt: number) => any;
 }
 
 export interface ClientOptions {
@@ -57,6 +57,9 @@ class AccessToken {
 }
 
 export class Client {
+  private defaultNumberOfAttempts: number  = 5;
+  private defaultInitialDelay: number  = 500;
+
   public owners: Owners;
   public objects: Objects;
   public events: Events;
@@ -181,16 +184,21 @@ export class Client {
     if (!exponentialBackoff) {
       return f().catch((err) => Promise.reject(err.payload));
     } else {
+      const retries =
+        exponentialBackoff.numberOfAttempts ? exponentialBackoff.numberOfAttempts : this.defaultNumberOfAttempts;
+      const minTimeout =
+        exponentialBackoff.initialDelayInMillis ? exponentialBackoff.initialDelayInMillis : this.defaultInitialDelay;
+
       const opts: any = {
-        retries: exponentialBackoff.numberOfAttempts,
-        minTimeout: exponentialBackoff.initialDelayInMillis,
+        retries,
+        minTimeout,
         randomize: true
       };
 
       return promiseRetry((retry: any, attempt: number) => {
         return f().catch((err) => {
           if (err.statusCode === 503) {
-            if (attempt <= exponentialBackoff.numberOfAttempts) {
+            if (exponentialBackoff.onRetry && attempt <= exponentialBackoff.numberOfAttempts) {
               exponentialBackoff.onRetry(attempt);
             }
             return retry();
