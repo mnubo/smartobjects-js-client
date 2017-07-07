@@ -38,5 +38,8 @@
     "test": "JASMINE_CONFIG_PATH=jasmine.json node_modules/jasmine/bin/jasmine.js"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "promise-retry": "^1.1.1"
+  }
 }
