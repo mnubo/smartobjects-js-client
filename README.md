@@ -63,12 +63,13 @@ compression: {
 Note that, when using compression, the data being resolved in the Promise will always be JSON. The compression/decompression is done behind the scenes using NodeJS `zlib` library.
 
 #### Exponential backoff retries
-The configuration to turn on the feature looks like this:
+Exponential backoff retries allows a user of the client to automatically retry requests when a `503` HTTP error is returned from the `SmartObjects` platform. It will gradually increase the interval between retries to allow the server to recover. The configuration to turn on the feature looks like this:
+
 ```typescript
-{
-  numberOfAttempts: 2, // default to 5 if undefined
-  initialDelayInMillis: 100, // default to 500 if undefined
-  onRetry: (attempt: number) => { , // default to nothing if undefined
+exponentialBackoff: {
+  numberOfAttempts: 2, /* How many retries to make before failing. Default to 5 if undefined. */
+  initialDelayInMillis: 100, /* The number of ms to wait before the first retry. Default to 500 if undefined. */
+  onRetry: (attempt: number) => { /* A callback function called for every retry. Default to nothing if undefined. */
     console.log('Attempt #' + attempt);
   }
 }
