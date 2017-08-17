@@ -52,7 +52,7 @@ var client = new mnubo.Client({
 
 You can also create a client with an access token. We do not recommend that for production usage:
 ```js
-/* Create a new client with an access token . */
+/* Create a new client with an access token. */
 var client = new mnubo.Client({
   token: 'token...',
   env: 'sandbox'
