@@ -4,9 +4,13 @@ export function authenticate(target: Object, key: string, descriptor: any) {
   descriptor.value = function() {
     const args = arguments;
 
-    return this.client.authenticate().then(() => {
-      return value.apply(this, args);
-    });
+    if (!this.client.options.token) {
+      return this.client.authenticate().then(() => {
+        return value.apply(this, args);
+      });
+    } else {
+      return Promise.resolve(value.apply(this, args));
+    }
   };
 
   return descriptor;

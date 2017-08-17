@@ -60,5 +60,19 @@ describe('model', function() {
                 done();
             });
         });
+
+        it('should work with fixed token', function(done) {
+            const clientWithToken = new mnubo.Client({
+                token: client.token.value,
+                env: 'sandbox'
+            });
+
+            clientWithToken.model.export().then(() => {
+                done()
+            }).catch((error) => {
+                fail(error);
+                done();
+            });
+        });
     });
 });

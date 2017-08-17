@@ -32,6 +32,7 @@ export interface ClientOptions {
   id: string;
   secret: string;
   env?: string;
+  token?: string;
   httpOptions?: RequestOptions;
   compression?: boolean | ClientCompression;
   exponentialBackoff?: ExponentialBackoff;
@@ -159,7 +160,9 @@ export class Client {
 
     contentType = contentType || 'application/json';
 
-    options.headers.set('Authorization', `Bearer ${this.token.value}`);
+    const token = this.options.token ? this.options.token : this.token.value;
+
+    options.headers.set('Authorization', `Bearer ${token}`);
     options.headers.set('Content-Type', `${contentType}`);
 
     if (isClientCompression(compression)) {
