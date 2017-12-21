@@ -23,6 +23,8 @@ The minimum requirement is `node>=0.10.40` but because the code uses [Promise](h
 
 ## Usage
 
+Because the platform supports UTF-8 for ingesting data, the encoding to use in the client must be UTF-8 as well.
+
 ### Authentication
 
 The authentication is wrapped for every SDK call. The library will first fetch a new Access Token and make the API call. There is nothing to do from a developer's perspective besides setting the client id, client secret and environment during initialization.
