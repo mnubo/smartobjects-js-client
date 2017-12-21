@@ -26,7 +26,7 @@ export class Request {
     return isPresent(this.body);
   }
 
-  payload() {
+  payload(): string {
     if (!this.hasPayload()) {
       return '';
     }

@@ -5,7 +5,7 @@ import * as zlib from 'zlib';
 import {Request, RequestMethods} from '../request';
 
 export function nodeHttpRequest(request: Request): Promise<any> {
-  let data: string | Buffer = request.payload();
+  let data: Buffer = Buffer.from(request.payload(), 'utf-8');
 
   if (request.options.headers.get('Content-Encoding') === 'gzip') {
       data = zlib.gzipSync(new Buffer(data));
