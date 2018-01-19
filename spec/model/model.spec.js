@@ -12,48 +12,55 @@ describe('model', function() {
             client.model.export().then((response) => {
                 expect(response.eventTypes).toBeDefined();
                 expect(response.eventTypes.length).toBeGreaterThan(0);
-                expect(response.eventTypes[0].key).toBe('event_type1');
-                expect(response.eventTypes[0].origin).toBe('scheduled');
-                expect(response.eventTypes[0].timeseries).toBeDefined();
-                expect(response.eventTypes[0].timeseries.length).toBeGreaterThan(0);
+                const et = response.eventTypes.filter(v => v.key === 'event_type1')[0]
+                expect(et.key).toBe('event_type1');
+                expect(et.origin).toBe('scheduled');
+                expect(et.timeseries).toBeDefined();
+                expect(et.timeseries.length).toBeGreaterThan(0);
 
                 expect(response.objectTypes).toBeDefined();
                 expect(response.objectTypes.length).toBeGreaterThan(0);
-                expect(response.objectTypes[0].key).toBe('object_type1');
-                expect(response.objectTypes[0].objectAttributes).toBeDefined();
-                expect(response.objectTypes[0].objectAttributes.length).toBeGreaterThan(0);
+                const ot = response.objectTypes.filter(v => v.key === 'object_type1')[0]
+                expect(ot.key).toBe('object_type1');
+                expect(ot.objectAttributes).toBeDefined();
+                expect(ot.objectAttributes.length).toBeGreaterThan(0);
 
                 expect(response.ownerAttributes).toBeDefined();
                 expect(response.ownerAttributes.length).toBeGreaterThan(0);
-                expect(response.ownerAttributes[0].key).toBe('owner_text_attribute')
-                expect(response.ownerAttributes[0].displayName).toBe('dp owner_text_attribute')
-                expect(response.ownerAttributes[0].description).toBe('desc owner_text_attribute')
-                expect(response.ownerAttributes[0].type.highLevelType).toBe('TEXT')
-                expect(response.ownerAttributes[0].type.containerType).toBe('none')
+                const owner = response.ownerAttributes.filter(v => v.key === 'owner_text_attribute')[0]
+                expect(owner.key).toBe('owner_text_attribute')
+                expect(owner.displayName).toBe('dp owner_text_attribute')
+                expect(owner.description).toBe('desc owner_text_attribute')
+                expect(owner.type.highLevelType).toBe('TEXT')
+                expect(owner.type.containerType).toBe('none')
 
                 expect(response.sessionizers).toBeDefined();
                 expect(response.sessionizers.length).toBeGreaterThan(0);
-                expect(response.sessionizers[0].key).toBe('sessionizer')
-                expect(response.sessionizers[0].displayName).toBe('dp sessionizer')
-                expect(response.sessionizers[0].description).toBe('')
-                expect(response.sessionizers[0].startEventTypeKey).toBe('event_type1')
-                expect(response.sessionizers[0].endEventTypeKey).toBe('event_type2')
+                const sess = response.sessionizers.filter(v => v.key === 'sessionizer')[0]
+                expect(sess.key).toBe('sessionizer')
+                expect(sess.displayName).toBe('dp sessionizer')
+                expect(sess.description).toBe('')
+                expect(sess.startEventTypeKey).toBe('event_type1')
+                expect(sess.endEventTypeKey).toBe('event_type2')
 
                 expect(response.orphans).toBeDefined();
                 expect(response.orphans.timeseries).toBeDefined();
-                expect(response.orphans.timeseries[0].key).toBe('orphan_ts')
-                expect(response.orphans.timeseries[0].displayName).toBe('dp orphan_ts')
-                expect(response.orphans.timeseries[0].description).toBe('desc orphan_ts')
-                expect(response.orphans.timeseries[0].type.highLevelType).toBe('ACCELERATION')
+                expect(response.orphans.timeseries.length).toBeGreaterThan(0);
+                const orts = response.orphans.timeseries.filter(v => v.key === 'orphan_ts')[0]
+                expect(orts.key).toBe('orphan_ts')
+                expect(orts.displayName).toBe('dp orphan_ts')
+                expect(orts.description).toBe('desc orphan_ts')
+                expect(orts.type.highLevelType).toBe('ACCELERATION')
 
                 expect(response.orphans.objectAttributes).toBeDefined();
-                expect(response.orphans.objectAttributes[0].key).toBe('orphan_object')
-                expect(response.orphans.objectAttributes[0].displayName).toBe('dp orphan_object')
-                expect(response.orphans.objectAttributes[0].description).toBe('desc orphan_object')
-                expect(response.orphans.objectAttributes[0].type.highLevelType).toBe('EMAIL')
-                expect(response.orphans.objectAttributes[0].type.containerType).toBe('none')
-
                 expect(response.orphans.objectAttributes.length).toBeGreaterThan(0);
+                const objts = response.orphans.objectAttributes.filter(v => v.key === 'orphan_object')[0]
+                expect(objts.key).toBe('orphan_object')
+                expect(objts.displayName).toBe('dp orphan_object')
+                expect(objts.description).toBe('desc orphan_object')
+                expect(objts.type.highLevelType).toBe('EMAIL')
+                expect(objts.type.containerType).toBe('none')
+
                 done();
             }).catch((error) => {
                 fail(error);

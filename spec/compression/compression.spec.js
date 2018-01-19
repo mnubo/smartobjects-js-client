@@ -40,7 +40,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(500);
+      expect(response.rows.length).toBeGreaterThanOrEqual(50);
       done();
     }).catch((error) => {
       fail(error);
@@ -56,7 +56,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(500);
+      expect(response.rows.length).toBeGreaterThanOrEqual(50);
       done();
     }).catch((error) => {
       fail(error);
@@ -72,7 +72,7 @@ describe('compression', function() {
     }, options));
 
     client.search.createBasicQuery(mql).then((response) => {
-      expect(response.rows.length).toBe(500);
+      expect(response.rows.length).toBeGreaterThanOrEqual(50);
       done();
     }).catch((error) => {
       fail(error);
