@@ -98,14 +98,14 @@ If you are not familiar with promises, there is an excellent article on [html5ro
 
 ### Examples
 
-If you need some examples to get started with the SDK, you can check out the [wiki page](https://github.com/mnubo/mnubo-js-sdk/wiki/Examples).
+If you need some examples to get started with the SDK, you can check out the [wiki page](https://github.com/mnubo/smartobjects-js-client/wiki/Examples).
 
 ## References
 
-[mnubo documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t)
+[mnubo documentation](https://smartobjects.mnubo.com/documentation/)
 
 [Promise](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise)
 
 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-[Examples](https://github.com/mnubo/mnubo-js-sdk/wiki/Examples)
+[Examples](https://github.com/mnubo/smartobjects-js-client/wiki/Examples)
