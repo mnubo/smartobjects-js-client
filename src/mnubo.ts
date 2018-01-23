@@ -10,6 +10,13 @@ import {Search} from './restitution/search';
 import {Bigdata} from './bigdata/bigdata';
 import {Model} from './model/model';
 
+let version: string;
+try {
+  version = require('../package.json').version;
+} catch (e)  {
+  version = 'unknown';
+}
+
 export enum OAuth2Scopes {
   ALL,
   LIMITED,
@@ -119,6 +126,7 @@ export class Client {
 
     options.headers.set('Authorization', `Basic ${base64Encode(id + ':' + secret)}`);
     options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    options.headers.set('X-MNUBO-SDK', `JavaScript/${version}`);
 
     Object.assign(options, this.options.httpOptions);
 
