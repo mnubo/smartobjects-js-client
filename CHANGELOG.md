@@ -1,3 +1,14 @@
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/mnubo/smartobjects-js-client/compare/1.10.1...1.11.0) (2018-01-24)
+
+
+### Features
+
+* **modeler:** add the modeler API along with tests ([2f57f32](https://github.com/mnubo/smartobjects-js-client/commit/2f57f32))
+* **version:** set the X-MNUBO-SDK version in a header ([ec1a16f](https://github.com/mnubo/smartobjects-js-client/commit/ec1a16f))
+
+
+
 <a name="1.10.1"></a>
 ## [1.10.1](https://github.com/mnubo/smartobjects-js-client/compare/1.10.0...1.10.1) (2017-12-21)
 
