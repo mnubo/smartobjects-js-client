@@ -1,0 +1,33 @@
+<h3>Get the client library</h3>
+<p>The client library is available on <a href="https://www.npmjs.com/package/mnubo-sdk">NPM</a>.</p>
+
+<p>You can install everything like that:</p>
+<pre>
+    <code>
+npm install --save es6-shim  # if you run node < 4.0.0
+npm install --save mnubo-sdk
+    </code>
+</pre>
+
+<p>Learn more on: <a href="https://github.com/mnubo/smartobjects-js-client">GitHub</a>.<p>
+
+<h3>Create a client instance</h3>
+
+<p>To create an instance, you can use the following JavaScript code:</p>
+
+<pre>
+    <code>
+var mnubo = require('mnubo-sdk');
+
+/* Create a new client with client id and client secret. */
+var client = new mnubo.Client({
+  id: '<%= clientKey %>',
+  secret: '<%= clientSecret %>',
+  httpOptions = {
+    protocol: 'https',
+    hostname: "<%= hostname %>",
+    port: 443
+  };
+});
+    </code>
+</pre>
