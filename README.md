@@ -3,6 +3,47 @@
 [![Build status](https://travis-ci.org/mnubo/smartobjects-js-client.svg?branch=master)](https://travis-ci.org/mnubo/smartobjects-js-client)
 [![npm version](https://badge.fury.io/js/mnubo-sdk.svg)](https://www.npmjs.com/package/mnubo-sdk)
 
+## Quickstart
+
+[comment]: # (Important: leave the HTML in this section)
+[comment]: # (quickstart-setup)
+
+<h3>Getting the client library</h3>
+<p>The client library is available on <a target="_blank" href="https://www.npmjs.com/package/mnubo-sdk">NPM</a>.</p>
+
+<p>Below is an example of how you can install everything:</p>
+<pre>
+    <code>
+npm install --save es6-shim  # if you run node < 4.0.0
+npm install --save mnubo-sdk
+    </code>
+</pre>
+
+<p>For more information, visit <a target="_blank" href="https://github.com/mnubo/smartobjects-js-client">GitHub</a>.<p>
+
+<h3>Create a client instance</h3>
+
+<p>The following JavaScript code can be used to create an instance:</p>
+
+<pre>
+    <code>
+var mnubo = require('mnubo-sdk');
+
+/* Create a new client with client id and client secret. */
+var client = new mnubo.Client({
+  id: '<%= clientKey %>',
+  secret: '<%= clientSecret %>',
+  httpOptions = {
+    protocol: 'https',
+    hostname: "<%= hostname %>",
+    port: 443
+  };
+});
+    </code>
+</pre>
+
+[comment]: # (quickstart-setup)
+
 ## Introduction
 
 This is a JavaScript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t). Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
