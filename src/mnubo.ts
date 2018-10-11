@@ -130,13 +130,9 @@ export class Client {
 
     Object.assign(options, this.options.httpOptions);
 
-    const promise = http.post(options, payload);
-
-    promise.then((data: any) => {
+    return http.post(options, payload).then((data: any) => {
       this.token = new AccessToken(data.access_token, data.token_type, data.expires_in, data.jti);
     });
-
-    return promise;
   }
 
   /**
