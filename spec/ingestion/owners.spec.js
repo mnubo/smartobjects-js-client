@@ -82,7 +82,7 @@ describe('ingestion: owners', function() {
     it('should claim a device id for a given username', function(done) {
       client.owners.claim(username1, deviceId)
       .then((response) => {
-        expect(response).toBe(null);
+        expect(response).toBe('');
         done();
       })
       .catch((error) => {
@@ -96,7 +96,7 @@ describe('ingestion: owners', function() {
     it('should unclaim a device id for a given username', function(done) {
       client.owners.unclaim(username1, deviceId)
         .then((response) => {
-          expect(response).toBe(null);
+          expect(response).toBe('');
           done();
         })
         .catch((error) => {
@@ -111,7 +111,7 @@ describe('ingestion: owners', function() {
       client.owners.claim(username1, deviceId, {
         x_timestamp: "2017-04-26T00:40:12+00:00"
       }).then((response) => {
-        expect(response).toBe(null);
+        expect(response).toBe('');
         done();
       })
       .catch((error) => {
@@ -126,7 +126,7 @@ describe('ingestion: owners', function() {
       client.owners.unclaim(username1, deviceId, {
         x_timestamp: "2017-04-26T00:40:12+00:00"
       }).then((response) => {
-          expect(response).toBe(null);
+          expect(response).toBe('');
           done();
         })
         .catch((error) => {

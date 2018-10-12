@@ -26,7 +26,7 @@ describe('ingestion: encoding', function () {
                     x_event_type: 'event_type_with_àéî你好',
                 }
             ]).then((response) => {
-                expect(response).toBeNull();
+                expect(response).toBe('OK');
                 done();
             }).catch((error) => {
                 fail(error);

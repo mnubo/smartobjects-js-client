@@ -33,7 +33,7 @@ describe('ingestion: events', function() {
           x_event_type: 'event_type1',
         },
       ]).then((response) => {
-        expect(response).toBeNull();
+        expect(response).toBe('OK');
         done();
       }).catch((error) => {
         fail(error);
