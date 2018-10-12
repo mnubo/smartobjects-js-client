@@ -3,7 +3,7 @@ export function isPresent(val: any) {
 }
 
 export function base64Encode(str: string) {
-  return new Buffer(str).toString('base64');
+  return Buffer.from(str).toString('base64');
 }
 
 export function encodeObjectForUrlParams(data: any):string {

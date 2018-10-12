@@ -8,7 +8,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
   let data: Buffer = Buffer.from(request.payload(), 'utf-8');
 
   if (request.options.headers.get('Content-Encoding') === 'gzip') {
-      data = zlib.gzipSync(new Buffer(data));
+      data = zlib.gzipSync(Buffer.from(data));
   }
 
   const options: http.RequestOptions = {
