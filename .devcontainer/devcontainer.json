@@ -1,0 +1,8 @@
+{
+	"name": "Node",
+	"dockerFile": "Dockerfile",
+	"context": "..",
+	"extensions": [
+		"esbenp.prettier-vscode"
+	]
+}
