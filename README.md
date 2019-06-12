@@ -141,6 +141,20 @@ If you are not familiar with promises, there is an excellent article on [html5ro
 
 If you need some examples to get started with the SDK, you can check out the [wiki page](https://github.com/mnubo/smartobjects-js-client/wiki/Examples).
 
+## Development
+
+With Visual Studio code, you can use the development container extension. This will open
+the editor in a container that has all the requirement while leaving your workstation
+untouched.
+
+From the editor, you can then, open a terminal and do the following to run the tests:
+```bash
+root@4d7a461e5fbc:/workspaces/smartobjects-js-client# source scripts/test-setup.sh YOUR_KEY YOUR_SECRET
+root@4d7a461e5fbc:/workspaces/smartobjects-js-client# npm install
+root@4d7a461e5fbc:/workspaces/smartobjects-js-client# npm run build
+root@4d7a461e5fbc:/workspaces/smartobjects-js-client# npm test
+```
+
 ## References
 
 [mnubo documentation](https://smartobjects.mnubo.com/documentation/)

@@ -111,6 +111,8 @@ export interface TypeOps<A> {
   create(values: Array<A> | A): Promise<void>;
   update(key: string, update: A): Promise<void>;
   delete(key: string): Promise<void>;
+  addRelation(key: string, entityKey: string): Promise<void>;
+  removeRelation(key: string, entityKey: string): Promise<void>;
 }
 
 export interface ResetOps {
@@ -164,7 +166,7 @@ class EntityOpsImpl<A> implements EntityOps<A> {
 }
 
 class TypeOpsImpl<A> implements TypeOps<A> {
-  constructor(private client: Client, private path: string) {}
+  constructor(private client: Client, private path: string, private entityPath: string) {}
 
   @authenticate
   create(value: Array<A> | A): Promise<void> {
@@ -180,6 +182,16 @@ class TypeOpsImpl<A> implements TypeOps<A> {
   @authenticate
   delete(key: string): Promise<void> {
     return this.client.delete(`${basePath}${this.path}/${key}`);
+  }
+
+  @authenticate
+  addRelation(key: string, entityKey: string): Promise<void> {
+    return this.client.post(`${basePath}${this.path}/${key}${this.entityPath}/${entityKey}`, null);
+  }
+
+  @authenticate
+  removeRelation(key: string, entityKey: string): Promise<void> {
+    return this.client.delete(`${basePath}${this.path}/${key}${this.entityPath}/${entityKey}`);
   }
 }
 class ResetOpsImpl implements ResetOps {
@@ -204,13 +216,15 @@ class ResetOpsImpl implements ResetOps {
 export class Model {
   public sandboxOps: SandboxOnlyOps;
   constructor(private client: Client) {
+    const timeseriesPath = '/timeseries';
+    const objectAttributesPath = '/objectAttributes';
     this.sandboxOps = {
-      timeseriesOps: new EntityOpsImpl<Timeseries>(client, '/timeseries'),
+      timeseriesOps: new EntityOpsImpl<Timeseries>(client, timeseriesPath),
       ownerAttributesOps: new EntityOpsImpl<OwnerAttribute>(client, '/ownerAttributes'),
-      objectAttributesOps: new EntityOpsImpl<ObjectAttribute>(client, '/objectAttributes'),
+      objectAttributesOps: new EntityOpsImpl<ObjectAttribute>(client, objectAttributesPath),
 
-      objectTypesOps: new TypeOpsImpl<SingleObjectType>(client, '/objectTypes'),
-      eventTypesOps: new TypeOpsImpl<SingleEventType>(client, '/eventTypes'),
+      objectTypesOps: new TypeOpsImpl<SingleObjectType>(client, '/objectTypes', objectAttributesPath),
+      eventTypesOps: new TypeOpsImpl<SingleEventType>(client, '/eventTypes', timeseriesPath),
       resetOps: new ResetOpsImpl(client),
     };
   }
