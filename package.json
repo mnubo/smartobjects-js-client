@@ -38,6 +38,7 @@
     "build": "tsc",
     "test": "JASMINE_CONFIG_PATH=jasmine.json node_modules/jasmine/bin/jasmine.js",
     "pretty": "git ls-files -- '*.[tj]s' | xargs prettier --write",
+    "prettylint": "git ls-files -- '*.[tj]s' | xargs prettier -l",
     "prepack": "npm run build"
   },
   "author": "Jeremy Attali <jattali@mnubo.com>",
