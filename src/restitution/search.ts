@@ -1,5 +1,5 @@
-import {Client} from '../mnubo';
-import {authenticate} from '../decorators';
+import { Client } from '../mnubo';
+import { authenticate } from '../decorators';
 
 export class Search {
   private path: string;

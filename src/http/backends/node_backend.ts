@@ -2,13 +2,13 @@ import * as http from 'http';
 import * as https from 'https';
 import * as zlib from 'zlib';
 
-import {Request, RequestMethods} from '../request';
+import { Request, RequestMethods } from '../request';
 
 export function nodeHttpRequest(request: Request): Promise<any> {
   let data: Buffer = Buffer.from(request.payload(), 'utf-8');
 
   if (request.options.headers.get('Content-Encoding') === 'gzip') {
-      data = zlib.gzipSync(Buffer.from(data));
+    data = zlib.gzipSync(Buffer.from(data));
   }
 
   const options: http.RequestOptions = {
@@ -18,8 +18,8 @@ export function nodeHttpRequest(request: Request): Promise<any> {
     method: RequestMethods[request.method],
     path: request.options.path,
     headers: {
-      'Content-Length': data.length
-    }
+      'Content-Length': data.length,
+    },
   };
 
   request.options.headers.forEach((value, header) => {
@@ -30,7 +30,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
     const cb = function(response: http.IncomingMessage) {
       const buffers: Array<Buffer> = [];
 
-      response.on('data', function (chunk: Buffer) {
+      response.on('data', function(chunk: Buffer) {
         buffers.push(chunk);
       });
 
@@ -45,10 +45,11 @@ export function nodeHttpRequest(request: Request): Promise<any> {
         }
 
         if (payload.length) {
-          if (response.headers &&
+          if (
+            response.headers &&
             response.headers['content-type'] &&
-            response.headers['content-type'].indexOf('application/json') !== -1) {
-
+            response.headers['content-type'].indexOf('application/json') !== -1
+          ) {
             payload = JSON.parse(payload.toString());
           }
         } else {
@@ -61,7 +62,7 @@ export function nodeHttpRequest(request: Request): Promise<any> {
         } else {
           reject({
             statusCode,
-            payload
+            payload,
           });
         }
       });

@@ -1,5 +1,5 @@
-import {Client} from '../mnubo';
-import {authenticate} from '../decorators';
+import { Client } from '../mnubo';
+import { authenticate } from '../decorators';
 
 export class Objects {
   private path: string;
@@ -24,18 +24,18 @@ export class Objects {
   }
 
   @authenticate
-  delete (deviceId: string): Promise<any> {
+  delete(deviceId: string): Promise<any> {
     return this.client.delete(`${this.path}/${deviceId}`);
   }
 
   @authenticate
-  exists(deviceIds: Array<string>|string): Promise<any> {
+  exists(deviceIds: Array<string> | string): Promise<any> {
     const path = `${this.path}/exists`;
 
     if (Array.isArray(deviceIds)) {
       return this.client.post(`${path}`, deviceIds);
     } else {
-      return this.client.get(`${path}/${deviceIds}`)
+      return this.client.get(`${path}/${deviceIds}`);
     }
   }
 }

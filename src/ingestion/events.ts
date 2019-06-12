@@ -1,6 +1,6 @@
-import {Client} from '../mnubo';
-import {authenticate} from '../decorators';
-import {encodeObjectForUrlParams} from '../utils/underscore'
+import { Client } from '../mnubo';
+import { authenticate } from '../decorators';
+import { encodeObjectForUrlParams } from '../utils/underscore';
 
 export interface EventsSendOptions {
   reportResults?: boolean;

@@ -1,5 +1,5 @@
-import {Request, RequestMethods, RequestOptions} from './request';
-import {nodeHttpRequest} from './backends/node_backend';
+import { Request, RequestMethods, RequestOptions } from './request';
+import { nodeHttpRequest } from './backends/node_backend';
 
 export class http {
   static request(request: Request): Promise<any> {
@@ -24,7 +24,7 @@ export class http {
     return this.request(request);
   }
 
-  static delete (options: RequestOptions): Promise<any> {
+  static delete(options: RequestOptions): Promise<any> {
     let request = new Request(RequestMethods.DELETE, options);
 
     return this.request(request);

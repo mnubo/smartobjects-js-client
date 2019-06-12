@@ -1,5 +1,5 @@
-import {authenticate} from '../decorators';
-import {Client} from '../mnubo';
+import { authenticate } from '../decorators';
+import { Client } from '../mnubo';
 
 export interface SimpleType {
   highLevelType: string;
@@ -100,7 +100,7 @@ export interface DataModel {
 
 export interface EntityOps<A> {
   create(values: Array<A> | A): Promise<void>;
-  update(key: string, update: { displayName: string, description: string }): Promise<void>;
+  update(key: string, update: { displayName: string; description: string }): Promise<void>;
 
   generateDeployCode(key: string): Promise<string>;
   applyDeployCode(key: string, code: string): Promise<void>;
@@ -132,65 +132,49 @@ export interface SandboxOnlyOps {
 const basePath = '/api/v3/model';
 
 class EntityOpsImpl<A> implements EntityOps<A> {
-  constructor(private client: Client, private path: string) { }
+  constructor(private client: Client, private path: string) {}
 
   @authenticate
   create(value: Array<A> | A): Promise<void> {
-    const valueArray: Array<A>  = Array.isArray(value) ? value : [value];
-    return this.client.post(
-      `${basePath}${this.path}`,
-      valueArray
-    );
+    const valueArray: Array<A> = Array.isArray(value) ? value : [value];
+    return this.client.post(`${basePath}${this.path}`, valueArray);
   }
 
   @authenticate
-  update(key: string, update: { displayName: string; description: string; }): Promise<void> {
-    return this.client.put(
-      `${basePath}${this.path}/${key}`,
-      update
-    );
+  update(key: string, update: { displayName: string; description: string }): Promise<void> {
+    return this.client.put(`${basePath}${this.path}/${key}`, update);
   }
 
   @authenticate
   generateDeployCode(key: string): Promise<string> {
-    return this.client.post(
-      `${basePath}${this.path}/${key}/deploy`,
-      null
-    ).then((response: { code: string }) => response.code);
+    return this.client
+      .post(`${basePath}${this.path}/${key}/deploy`, null)
+      .then((response: { code: string }) => response.code);
   }
 
   @authenticate
   applyDeployCode(key: string, code: string): Promise<void> {
-    return this.client.post(
-      `${basePath}${this.path}/${key}/deploy/${code}`,
-      null
-    );
+    return this.client.post(`${basePath}${this.path}/${key}/deploy/${code}`, null);
   }
 
   @authenticate
   deploy(key: string): Promise<void> {
-    return this.generateDeployCode(key).then(code => this.applyDeployCode(key, code));
+    return this.generateDeployCode(key).then((code) => this.applyDeployCode(key, code));
   }
 }
 
 class TypeOpsImpl<A> implements TypeOps<A> {
-  constructor(private client: Client, private path: string) { }
+  constructor(private client: Client, private path: string) {}
 
   @authenticate
   create(value: Array<A> | A): Promise<void> {
-    const valueArray: Array<A>  = Array.isArray(value) ? value : [value];
-    return this.client.post(
-      `${basePath}${this.path}`,
-      valueArray
-    )
+    const valueArray: Array<A> = Array.isArray(value) ? value : [value];
+    return this.client.post(`${basePath}${this.path}`, valueArray);
   }
 
   @authenticate
   update(key: string, update: A): Promise<void> {
-    return this.client.put(
-      `${basePath}${this.path}/${key}`,
-      update
-    );
+    return this.client.put(`${basePath}${this.path}/${key}`, update);
   }
 
   @authenticate
@@ -199,27 +183,21 @@ class TypeOpsImpl<A> implements TypeOps<A> {
   }
 }
 class ResetOpsImpl implements ResetOps {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {}
 
   @authenticate
   generateResetCode(): Promise<string> {
-    return this.client.post(
-      `${basePath}/reset`,
-      null
-    ).then((response: { code: string }) => response.code);
+    return this.client.post(`${basePath}/reset`, null).then((response: { code: string }) => response.code);
   }
 
   @authenticate
   applyResetCode(code: string): Promise<void> {
-    return this.client.post(
-      `${basePath}/reset/${code}`,
-      null
-    );
+    return this.client.post(`${basePath}/reset/${code}`, null);
   }
 
   @authenticate
   reset(): Promise<void> {
-    return this.generateResetCode().then(code => this.applyResetCode(code));
+    return this.generateResetCode().then((code) => this.applyResetCode(code));
   }
 }
 
@@ -227,43 +205,43 @@ export class Model {
   public sandboxOps: SandboxOnlyOps;
   constructor(private client: Client) {
     this.sandboxOps = {
-      timeseriesOps: new EntityOpsImpl<Timeseries>(client, "/timeseries"),
-      ownerAttributesOps: new EntityOpsImpl<OwnerAttribute>(client, "/ownerAttributes"),
-      objectAttributesOps: new EntityOpsImpl<ObjectAttribute>(client, "/objectAttributes"),
+      timeseriesOps: new EntityOpsImpl<Timeseries>(client, '/timeseries'),
+      ownerAttributesOps: new EntityOpsImpl<OwnerAttribute>(client, '/ownerAttributes'),
+      objectAttributesOps: new EntityOpsImpl<ObjectAttribute>(client, '/objectAttributes'),
 
-      objectTypesOps: new TypeOpsImpl<SingleObjectType>(client, "/objectTypes"),
-      eventTypesOps: new TypeOpsImpl<SingleEventType>(client, "/eventTypes"),
-      resetOps: new ResetOpsImpl(client)
+      objectTypesOps: new TypeOpsImpl<SingleObjectType>(client, '/objectTypes'),
+      eventTypesOps: new TypeOpsImpl<SingleEventType>(client, '/eventTypes'),
+      resetOps: new ResetOpsImpl(client),
     };
   }
 
   @authenticate
   export(): Promise<DataModel> {
-    return this.client.get(basePath + '/export')
+    return this.client.get(basePath + '/export');
   }
 
   @authenticate
   getTimeseries(): Promise<Array<Timeseries>> {
-    return this.client.get(basePath + '/timeseries')
+    return this.client.get(basePath + '/timeseries');
   }
 
   @authenticate
   getOwnerAttributes(): Promise<Array<OwnerAttribute>> {
-    return this.client.get(basePath + '/ownerAttributes')
+    return this.client.get(basePath + '/ownerAttributes');
   }
 
   @authenticate
   getObjectAttributes(): Promise<Array<ObjectAttribute>> {
-    return this.client.get(basePath + '/objectAttributes')
+    return this.client.get(basePath + '/objectAttributes');
   }
 
   @authenticate
   getObjectTypes(): Promise<Array<ObjectType>> {
-    return this.client.get(basePath + '/objectTypes')
+    return this.client.get(basePath + '/objectTypes');
   }
 
   @authenticate
   getEventTypes(): Promise<Array<EventType>> {
-    return this.client.get(basePath + '/eventTypes')
+    return this.client.get(basePath + '/eventTypes');
   }
 }

@@ -1,5 +1,5 @@
-import {Client} from '../mnubo';
-import {authenticate} from '../decorators';
+import { Client } from '../mnubo';
+import { authenticate } from '../decorators';
 
 export class Owners {
   private path: string;
@@ -24,7 +24,7 @@ export class Owners {
   }
 
   @authenticate
-  delete (username: string): Promise<any> {
+  delete(username: string): Promise<any> {
     return this.client.delete(`${this.path}/${username}`);
   }
 
@@ -49,7 +49,7 @@ export class Owners {
   }
 
   @authenticate
-  exists(usernames: Array<string>|string): Promise<any> {
+  exists(usernames: Array<string> | string): Promise<any> {
     const path = `${this.path}/exists`;
 
     if (Array.isArray(usernames)) {

@@ -21,7 +21,8 @@ describe('backoff', function() {
     });
 
     client.authenticate().then(() => {
-      return client.get(path)
+      return client
+        .get(path)
         .then((response) => {
           expect(clientCounter).toEqual(server.getCount(path));
           expect(clientCounter).toEqual(4);
@@ -43,12 +44,11 @@ describe('backoff', function() {
     });
 
     client.authenticate().then(() => {
-      return client.get(path)
-        .catch((ex) => {
-          expect(clientCounter).toEqual(server.getCount(path));
-          expect(clientCounter).toEqual(6);
-          done();
-        });
+      return client.get(path).catch((ex) => {
+        expect(clientCounter).toEqual(server.getCount(path));
+        expect(clientCounter).toEqual(6);
+        done();
+      });
     });
   });
 
@@ -61,7 +61,8 @@ describe('backoff', function() {
     });
 
     client.authenticate().then(() => {
-      return client.get(path)
+      return client
+        .get(path)
         .then((response) => {
           expect(clientCounter).toEqual(server.getCount(path));
           expect(clientCounter).toEqual(1);
@@ -80,7 +81,8 @@ describe('backoff', function() {
     const client = newClient();
 
     client.authenticate().then(() => {
-      return client.get(path)
+      return client
+        .get(path)
         .then((response) => {
           expect(server.getCount(path)).toEqual(4);
           done();
@@ -97,7 +99,7 @@ describe('backoff', function() {
       httpOptions: {
         protocol: 'http',
         hostname: 'localhost',
-        port
+        port,
       },
       id: process.env.MNUBO_CLIENT_ID,
       secret: process.env.MNUBO_CLIENT_SECRET,
@@ -105,8 +107,8 @@ describe('backoff', function() {
       exponentialBackoff: {
         numberOfAttempts: retries,
         initialDelayInMillis: delay,
-        onRetry: onRetryFn
-      }
+        onRetry: onRetryFn,
+      },
     });
   }
 });

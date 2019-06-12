@@ -1,4 +1,4 @@
-import {isPresent} from '../utils/underscore';
+import { isPresent } from '../utils/underscore';
 
 export enum RequestMethods {
   GET,
@@ -7,7 +7,7 @@ export enum RequestMethods {
   DELETE,
   OPTIONS,
   HEAD,
-  PATCH
+  PATCH,
 }
 
 export interface RequestOptions {
