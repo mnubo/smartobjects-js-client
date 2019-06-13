@@ -46,7 +46,7 @@ var client = new mnubo.Client({
 
 ## Introduction
 
-This is a JavaScript opinionated version of the original [API documentation](https://sop.mtl.mnubo.com/apps/doc/?i=t). Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
+This is a JavaScript opinionated version of the original [API documentation](https://smartobjects.mnubo.com/documentation/). Use classes Owners, Objects, Events, and Search to manage your owners, objects, events and perform searches using the API.
 
 ## Prerequisites
 
