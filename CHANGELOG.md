@@ -1,3 +1,19 @@
+# [1.12.0](https://github.com/mnubo/smartobjects-js-client/compare/1.11.0...1.12.0) (2019-06-13)
+
+
+### Bug Fixes
+
+* replace New Buffer with Buffer.from ([64113e8](https://github.com/mnubo/smartobjects-js-client/commit/64113e8))
+* **client:** return chained promise to avoid unhandled promise rejections ([1fb8638](https://github.com/mnubo/smartobjects-js-client/commit/1fb8638)), closes [#19](https://github.com/mnubo/smartobjects-js-client/issues/19)
+
+
+### Features
+
+* **model:** add/remove relation to types ([c1996f4](https://github.com/mnubo/smartobjects-js-client/commit/c1996f4))
+* **setup:** add setup template ([5458f34](https://github.com/mnubo/smartobjects-js-client/commit/5458f34))
+
+
+
 <a name="1.11.1"></a>
 ## [1.11.1](https://github.com/mnubo/smartobjects-js-client/compare/1.11.0...1.11.1) (2018-10-12)
 
