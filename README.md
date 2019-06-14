@@ -93,7 +93,10 @@ var client = new mnubo.Client({
 });
 ```
 
-You can also create a client with an access token. We do not recommend that for production usage:
+You can generate an App Token from the web application and use it with this SDK.
+
+Note: App Tokens can have restricted access to specific APIs and can be disabled by an administrator at any given time. This means that some API provided in this SDK may not work correctly.
+
 ```js
 /* Create a new client with an access token. */
 var client = new mnubo.Client({
