@@ -1,3 +1,12 @@
+## [1.12.1](https://github.com/mnubo/smartobjects-js-client/compare/1.12.0...1.12.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **types:** id secret are optional if token is given ([4eb0b84](https://github.com/mnubo/smartobjects-js-client/commit/4eb0b84))
+
+
+
 # [1.12.0](https://github.com/mnubo/smartobjects-js-client/compare/1.11.0...1.12.0) (2019-06-13)
 
 

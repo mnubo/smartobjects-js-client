@@ -1,6 +1,6 @@
 {
   "name": "mnubo-sdk",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "mnubo SmartObjects JavaScript client",
   "main": "dist/mnubo.js",
   "files": [
