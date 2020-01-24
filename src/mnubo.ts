@@ -36,8 +36,8 @@ export interface ExponentialBackoff {
 }
 
 export interface ClientOptions {
-  id: string;
-  secret: string;
+  id?: string;
+  secret?: string;
   env?: string;
   token?: string;
   httpOptions?: RequestOptions;
